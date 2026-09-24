@@ -4,358 +4,439 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Music Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap');
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-    
-body {
-  font-family: 'Poppins', -apple-system, sans-serif;
-  background: linear-gradient(-45deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #1a1a2e 100%);
-  background-size: 400% 400%;
-  animation: gradientShift 15s ease infinite;
-  color: #e0e0e0;
-  min-height: 100vh;
-  padding: 20px;
-  position: relative;
-  overflow-x: hidden;
-}
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at 20% 50%, rgba(147, 51, 234, 0.1) 0%, transparent 50%),
-              radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
-  pointer-events: none;
-  z-index: 0;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+    body {
+      font-family: 'Poppins', -apple-system, sans-serif;
+      background: linear-gradient(-45deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #1a1a2e 100%);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+      color: #e0e0e0;
+      min-height: 100vh;
+      padding: 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
 
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-}
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 50%, rgba(147, 51, 234, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
 
-header {
-  background: linear-gradient(135deg, #9333ea 0%, #7c3aed 50%, #6d28d9 100%);
-  padding: 3rem 2rem;
-  border-radius: 20px;
-  text-align: center;
-  margin-bottom: 2rem;
-  color: white;
-  box-shadow: 0 20px 60px rgba(147, 51, 234, 0.4);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  position: relative;
-  overflow: hidden;
-}
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
 
-header::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  right: -50%;
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-  border-radius: 50%;
-  animation: float 6s ease-in-out infinite;
-}
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
-}
+    header {
+      background: linear-gradient(135deg, #9333ea 0%, #7c3aed 50%, #6d28d9 100%);
+      padding: 3rem 2rem;
+      border-radius: 20px;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: white;
+      box-shadow: 0 20px 60px rgba(147, 51, 234, 0.4);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+    }
 
-header h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-  font-weight: 700;
-  letter-spacing: -1px;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
 
-header p {
-  font-size: 1rem;
-  opacity: 0.95;
-  font-weight: 300;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
+    .tabs {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
 
-.section {
-  background: rgba(42, 42, 62, 0.7);
-  padding: 2.5rem;
-  border-radius: 16px;
-  margin-bottom: 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
-}
+    .tab-btn {
+      padding: 0.75rem 1.5rem;
+      background: rgba(147, 51, 234, 0.2);
+      color: #c084fc;
+      border: 2px solid rgba(147, 51, 234, 0.3);
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      font-family: 'Poppins', sans-serif;
+    }
 
-.section:hover {
-  border-color: rgba(147, 51, 234, 0.3);
-  box-shadow: 0 12px 40px rgba(147, 51, 234, 0.2);
-}
+    .tab-btn.active {
+      background: linear-gradient(135deg, #9333ea 0%, #a855f7 100%);
+      color: white;
+      border-color: #a78bfa;
+      box-shadow: 0 8px 20px rgba(147, 51, 234, 0.3);
+    }
 
-.section h2 {
-  color: #c084fc;
-  margin-bottom: 1.5rem;
-  font-size: 1.5rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  background: linear-gradient(135deg, #a78bfa 0%, #c084fc 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+    .tab-btn:hover {
+      border-color: #a78bfa;
+      transform: translateY(-2px);
+    }
 
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
+    .section {
+      background: rgba(42, 42, 62, 0.7);
+      padding: 2.5rem;
+      border-radius: 16px;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      display: none;
+    }
 
-input[type="text"],
-input[type="file"] {
-  padding: 1rem;
-  border: 2px solid rgba(147, 51, 234, 0.3);
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.05);
-  color: #e0e0e0;
-  font-size: 1rem;
-  font-family: 'Inter', sans-serif;
-  transition: all 0.3s ease;
-}
+    .section.active {
+      display: block;
+    }
 
-input[type="text"]:focus,
-input[type="file"]:focus {
-  outline: none;
-  border-color: #a78bfa;
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 20px rgba(167, 139, 250, 0.3);
-}
+    .section h2 {
+      color: #c084fc;
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
 
-input[type="text"]::placeholder {
-  color: rgba(224, 224, 224, 0.4);
-  font-style: italic;
-}
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
 
-button {
-  padding: 1rem 2rem;
-  background: linear-gradient(135deg, #9333ea 0%, #a855f7 50%, #c084fc 100%);
-  color: white;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 1rem;
-  font-family: 'Poppins', sans-serif;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 8px 20px rgba(147, 51, 234, 0.3);
-}
+    input[type="text"],
+    input[type="file"],
+    input[type="search"] {
+      padding: 1rem;
+      border: 2px solid rgba(147, 51, 234, 0.3);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      color: #e0e0e0;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.3s ease;
+    }
 
-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.2);
-  transition: left 0.3s ease;
-}
+    input[type="text"]:focus,
+    input[type="file"]:focus,
+    input[type="search"]:focus {
+      outline: none;
+      border-color: #a78bfa;
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 20px rgba(167, 139, 250, 0.3);
+    }
 
-button:hover::before {
-  left: 100%;
-}
+    button {
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, #9333ea 0%, #a855f7 50%, #c084fc 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1rem;
+      font-family: 'Poppins', sans-serif;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px rgba(147, 51, 234, 0.3);
+    }
 
-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(147, 51, 234, 0.5);
-}
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(147, 51, 234, 0.5);
+    }
 
-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: none;
-}
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
 
-.track-card {
-  background: linear-gradient(135deg, rgba(147, 51, 234, 0.15) 0%, rgba(59, 130, 246, 0.1) 100%);
-  padding: 1.5rem;
-  border-radius: 12px;
-  border: 2px solid rgba(147, 51, 234, 0.3);
-  margin-bottom: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(5px);
-}
+    .track-card {
+      background: linear-gradient(135deg, rgba(147, 51, 234, 0.15) 0%, rgba(59, 130, 246, 0.1) 100%);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 2px solid rgba(147, 51, 234, 0.3);
+      margin-bottom: 1rem;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+    }
 
-.track-card:hover {
-  background: linear-gradient(135deg, rgba(147, 51, 234, 0.25) 0%, rgba(59, 130, 246, 0.2) 100%);
-  border-color: #a78bfa;
-  transform: translateX(5px);
-  box-shadow: 0 8px 25px rgba(147, 51, 234, 0.3);
-}
+    .track-card:hover {
+      background: linear-gradient(135deg, rgba(147, 51, 234, 0.25) 0%, rgba(59, 130, 246, 0.2) 100%);
+      border-color: #a78bfa;
+      transform: translateX(5px);
+      box-shadow: 0 8px 25px rgba(147, 51, 234, 0.3);
+    }
 
-.track-info h3 {
-  margin-bottom: 0.5rem;
-  color: white;
-  font-weight: 600;
-  font-size: 1.1rem;
-}
+    .track-info {
+      margin-bottom: 1rem;
+    }
 
-.track-info p {
-  font-size: 0.9rem;
-  opacity: 0.7;
-  font-family: 'Inter', sans-serif;
-  font-weight: 300;
-}
+    .track-info h3 {
+      color: white;
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+    }
 
-.track-actions {
-  display: flex;
-  gap: 0.75rem;
-}
+    .track-info p {
+      font-size: 0.9rem;
+      opacity: 0.7;
+      font-family: 'Inter', sans-serif;
+    }
 
-.btn-small {
-  padding: 0.6rem 1.2rem;
-  font-size: 0.9rem;
-  border-radius: 8px;
-  font-weight: 600;
-}
+    .track-meta {
+      font-size: 0.8rem;
+      opacity: 0.5;
+      margin-top: 0.5rem;
+    }
 
-.btn-delete {
-  background: rgba(239, 68, 68, 0.2);
-  color: #fca5a5;
-  border: 2px solid rgba(239, 68, 68, 0.5);
-}
+    .track-actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
 
-.btn-delete:hover {
-  background: rgba(239, 68, 68, 0.3);
-  border-color: #fca5a5;
-  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.3);
-}
+    .btn-small {
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      border-radius: 8px;
+      font-weight: 600;
+    }
 
-.empty {
-  text-align: center;
-  opacity: 0.6;
-  padding: 2rem;
-  font-style: italic;
-  font-family: 'Inter', sans-serif;
-  font-size: 1.1rem;
-}
+    .btn-play {
+      background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+      color: white;
+    }
 
-.player {
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(147, 51, 234, 0.2) 100%);
-  padding: 2rem;
-  border-radius: 16px;
-  margin-bottom: 2rem;
-  border: 2px solid rgba(147, 51, 234, 0.4);
-  box-shadow: 0 12px 40px rgba(147, 51, 234, 0.2);
-  backdrop-filter: blur(10px);
-}
+    .btn-favorite {
+      background: rgba(236, 72, 153, 0.2);
+      color: #f472b6;
+      border: 1px solid rgba(236, 72, 153, 0.5);
+    }
 
-.player h3 {
-  color: #c084fc;
-  margin-bottom: 0.5rem;
-  font-size: 1.3rem;
-  font-weight: 600;
-}
+    .btn-favorite.liked {
+      background: rgba(236, 72, 153, 0.4);
+    }
 
-.player p {
-  color: rgba(255, 255, 255, 0.8);
-  font-family: 'Inter', sans-serif;
-  margin-bottom: 1rem;
-}
+    .btn-delete {
+      background: rgba(239, 68, 68, 0.2);
+      color: #fca5a5;
+      border: 1px solid rgba(239, 68, 68, 0.5);
+    }
 
-audio {
-  width: 100%;
-  margin-top: 1rem;
-  accent-color: #9333ea;
-}
+    .player {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(147, 51, 234, 0.2) 100%);
+      padding: 2rem;
+      border-radius: 16px;
+      margin-bottom: 2rem;
+      border: 2px solid rgba(147, 51, 234, 0.4);
+      box-shadow: 0 12px 40px rgba(147, 51, 234, 0.2);
+      backdrop-filter: blur(10px);
+    }
 
-@media (max-width: 600px) {
-  header h1 {
-    font-size: 1.8rem;
-  }
+    .player h3 {
+      color: #c084fc;
+      margin-bottom: 0.5rem;
+      font-size: 1.3rem;
+    }
 
-  .track-card {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+    .player-controls {
+      display: flex;
+      gap: 0.5rem;
+      margin: 1rem 0;
+      flex-wrap: wrap;
+      align-items: center;
+    }
 
-  .track-actions {
-    width: 100%;
-  }
+    audio {
+      width: 100%;
+      margin: 1rem 0;
+      accent-color: #9333ea;
+    }
 
-  .btn-small {
-    flex: 1;
-  }
-}
+    .empty {
+      text-align: center;
+      opacity: 0.6;
+      padding: 2rem;
+      font-style: italic;
+    }
+
+    .playlist-item {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 0.75rem;
+      border: 1px solid rgba(147, 51, 234, 0.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .search-bar {
+      width: 100%;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.8rem;
+      }
+
+      .tabs {
+        justify-content: flex-start;
+        overflow-x: auto;
+        gap: 0.5rem;
+      }
+
+      .track-card {
+        flex-direction: column;
+      }
+
+      .track-actions {
+        width: 100%;
+      }
+
+      .btn-small {
+        flex: 1;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>🎵 Music Hub</h1>
-      <p>Upload, share, and listen</p>
+      <h1>🎵 Music Hub Pro</h1>
+      <p>Your personal music platform</p>
     </header>
 
-    <div class="section">
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('upload')">Upload</button>
+      <button class="tab-btn" onclick="switchTab('library')">Library</button>
+      <button class="tab-btn" onclick="switchTab('favorites')">❤ Favorites</button>
+      <button class="tab-btn" onclick="switchTab('recent')">Recent</button>
+      <button class="tab-btn" onclick="switchTab('popular')">Popular</button>
+      <button class="tab-btn" onclick="switchTab('playlists')">Playlists</button>
+      <button class="tab-btn" onclick="switchTab('queue')">Queue</button>
+    </div>
+
+    <!-- Upload Section -->
+    <div id="upload" class="section active">
       <h2>Upload Track</h2>
       <div class="form-group">
         <input type="text" id="artist" placeholder="Artist name">
         <input type="text" id="title" placeholder="Track title">
-        <input type="file" id="file" accept="audio/*">
+        <input type="text" id="genre" placeholder="Genre (e.g. Pop, Rock, Hip-Hop)">
+        <input type="file" id="file" accept="audio/*,video/*">
         <button id="uploadBtn">Upload</button>
       </div>
     </div>
 
+    <!-- Player Section -->
     <div id="player" class="player" style="display: none;">
       <h3 id="playerTitle"></h3>
       <p id="playerArtist"></p>
       <audio id="audio" controls></audio>
+      <div class="player-controls">
+        <button class="btn-small" onclick="toggleShuffle()">🔀 Shuffle</button>
+        <button class="btn-small" onclick="toggleRepeat()">🔁 Repeat</button>
+        <button class="btn-small" onclick="skipPrevious()">⏮ Prev</button>
+        <button class="btn-small" onclick="skipNext()">Next ⏭</button>
+        <input type="range" id="volumeControl" min="0" max="100" value="100" style="width: 150px;">
+      </div>
     </div>
 
-    <div class="section">
+    <!-- Library Section -->
+    <div id="library" class="section">
       <h2>Library</h2>
+      <div class="search-bar">
+        <input type="search" id="searchInput" placeholder="Search by title, artist, or genre..." onkeyup="searchTracks()">
+      </div>
       <div id="tracksList"></div>
+    </div>
+
+    <!-- Favorites Section -->
+    <div id="favorites" class="section">
+      <h2>❤ Favorite Tracks</h2>
+      <div id="favoritesList"></div>
+    </div>
+
+    <!-- Recently Played Section -->
+    <div id="recent" class="section">
+      <h2>Recently Played</h2>
+      <div id="recentList"></div>
+    </div>
+
+    <!-- Most Played Section -->
+    <div id="popular" class="section">
+      <h2>Most Played</h2>
+      <div id="popularList"></div>
+    </div>
+
+    <!-- Playlists Section -->
+    <div id="playlists" class="section">
+      <h2>Playlists</h2>
+      <div class="form-group">
+        <input type="text" id="playlistName" placeholder="New playlist name">
+        <button onclick="createPlaylist()">Create Playlist</button>
+      </div>
+      <div id="playlistsList"></div>
+    </div>
+
+    <!-- Queue Section -->
+    <div id="queue" class="section">
+      <h2>Queue</h2>
+      <button onclick="clearQueue()">Clear Queue</button>
+      <div id="queueList"></div>
     </div>
   </div>
 
   <script>
     let tracks = [];
+    let favorites = [];
+    let recentlyPlayed = [];
+    let playlists = [];
+    let queue = [];
     let currentTrack = null;
+    let shuffle = false;
+    let repeat = 0;
 
     const api = {
-      upload: async (file, artist, title) => {
+      upload: async (file, artist, title, genre) => {
         const form = new FormData();
         form.append('track', file);
         form.append('artist', artist);
         form.append('title', title);
+        form.append('genre', genre);
         const res = await fetch('/api/upload', { method: 'POST', body: form });
         return res.json();
       },
@@ -363,20 +444,66 @@ audio {
         const res = await fetch('/api/tracks');
         return res.json();
       },
+      search: async (query) => {
+        const res = await fetch(`/api/tracks/search/${query}`);
+        return res.json();
+      },
+      getFavorites: async () => {
+        const res = await fetch('/api/favorites');
+        return res.json();
+      },
+      addFavorite: async (id) => {
+        await fetch(`/api/favorites/${id}`, { method: 'POST' });
+      },
+      removeFavorite: async (id) => {
+        await fetch(`/api/favorites/${id}`, { method: 'DELETE' });
+      },
+      getRecentlyPlayed: async () => {
+        const res = await fetch('/api/recently-played');
+        return res.json();
+      },
+      recordPlay: async (id) => {
+        await fetch(`/api/played/${id}`, { method: 'POST' });
+      },
+      getMostPlayed: async () => {
+        const res = await fetch('/api/most-played');
+        return res.json();
+      },
+      getPlaylists: async () => {
+        const res = await fetch('/api/playlists');
+        return res.json();
+      },
+      createPlaylist: async (name) => {
+        const res = await fetch('/api/playlists', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name }) });
+        return res.json();
+      },
+      addToPlaylist: async (playlistId, trackId) => {
+        await fetch(`/api/playlists/${playlistId}/add/${trackId}`, { method: 'POST' });
+      },
+      deletePlaylist: async (id) => {
+        await fetch(`/api/playlists/${id}`, { method: 'DELETE' });
+      },
       deleteTrack: async (id) => {
         await fetch(`/api/tracks/${id}`, { method: 'DELETE' });
       }
     };
 
-    const loadTracks = async () => {
+    const loadAllData = async () => {
       tracks = await api.getTracks();
-      render();
+      favorites = (await api.getFavorites()).map(t => t.id);
+      recentlyPlayed = await api.getRecentlyPlayed();
+      playlists = await api.getPlaylists();
+      renderLibrary();
+      renderFavorites();
+      renderRecent();
+      renderPopular();
+      renderPlaylists();
     };
 
-    const render = () => {
+    const renderLibrary = () => {
       const list = document.getElementById('tracksList');
       if (tracks.length === 0) {
-        list.innerHTML = '<p class="empty">No tracks yet. Upload one!</p>';
+        list.innerHTML = '<p class="empty">No tracks yet</p>';
         return;
       }
       list.innerHTML = tracks.map(track => `
@@ -384,16 +511,125 @@ audio {
           <div class="track-info">
             <h3>${track.title}</h3>
             <p>${track.artist}</p>
+            <div class="track-meta">${track.genre} • ${track.plays} plays</div>
           </div>
           <div class="track-actions">
-            <button class="btn-small" onclick="playTrack(${track.id})">▶ Play</button>
+            <button class="btn-small btn-play" onclick="playTrack(${track.id})">▶ Play</button>
+            <button class="btn-small btn-favorite ${favorites.includes(track.id) ? 'liked' : ''}" onclick="toggleFavorite(${track.id})">❤</button>
+            <button class="btn-small" onclick="addToQueueUI(${track.id})">Queue</button>
             <button class="btn-small btn-delete" onclick="delTrack(${track.id})">Delete</button>
           </div>
         </div>
       `).join('');
     };
 
-    window.playTrack = (id) => {
+    const renderFavorites = () => {
+      const list = document.getElementById('favoritesList');
+      const favTracks = tracks.filter(t => favorites.includes(t.id));
+      if (favTracks.length === 0) {
+        list.innerHTML = '<p class="empty">No favorites yet</p>';
+        return;
+      }
+      list.innerHTML = favTracks.map(track => `
+        <div class="track-card">
+          <div class="track-info">
+            <h3>${track.title}</h3>
+            <p>${track.artist}</p>
+          </div>
+          <div class="track-actions">
+            <button class="btn-small btn-play" onclick="playTrack(${track.id})">▶ Play</button>
+            <button class="btn-small btn-delete" onclick="delTrack(${track.id})">Delete</button>
+          </div>
+        </div>
+      `).join('');
+    };
+
+    const renderRecent = () => {
+      const list = document.getElementById('recentList');
+      if (recentlyPlayed.length === 0) {
+        list.innerHTML = '<p class="empty">No recently played</p>';
+        return;
+      }
+      list.innerHTML = recentlyPlayed.map(track => `
+        <div class="track-card">
+          <div class="track-info">
+            <h3>${track.title}</h3>
+            <p>${track.artist}</p>
+          </div>
+          <div class="track-actions">
+            <button class="btn-small btn-play" onclick="playTrack(${track.id})">▶ Play</button>
+          </div>
+        </div>
+      `).join('');
+    };
+
+    const renderPopular = () => {
+      const list = document.getElementById('popularList');
+      const sorted = [...tracks].sort((a, b) => b.plays - a.plays).slice(0, 10);
+      if (sorted.length === 0) {
+        list.innerHTML = '<p class="empty">No popular tracks</p>';
+        return;
+      }
+      list.innerHTML = sorted.map(track => `
+        <div class="track-card">
+          <div class="track-info">
+            <h3>${track.title}</h3>
+            <p>${track.artist}</p>
+            <div class="track-meta">${track.plays} plays</div>
+          </div>
+          <div class="track-actions">
+            <button class="btn-small btn-play" onclick="playTrack(${track.id})">▶ Play</button>
+          </div>
+        </div>
+      `).join('');
+    };
+
+    const renderPlaylists = () => {
+      const list = document.getElementById('playlistsList');
+      if (playlists.length === 0) {
+        list.innerHTML = '<p class="empty">No playlists yet</p>';
+        return;
+      }
+      list.innerHTML = playlists.map(p => `
+        <div class="playlist-item">
+          <div>
+            <h4>${p.name}</h4>
+            <p style="font-size: 0.8rem; opacity: 0.6;">${p.tracks.length} tracks</p>
+          </div>
+          <div class="track-actions">
+            <button class="btn-small" onclick="viewPlaylist(${p.id})">View</button>
+            <button class="btn-small btn-delete" onclick="deletePlaylistUI(${p.id})">Delete</button>
+          </div>
+        </div>
+      `).join('');
+    };
+
+    const renderQueue = () => {
+      const list = document.getElementById('queueList');
+      if (queue.length === 0) {
+        list.innerHTML = '<p class="empty">Queue is empty</p>';
+        return;
+      }
+      const queueTracks = queue.map(id => tracks.find(t => t.id === id)).filter(Boolean);
+      list.innerHTML = queueTracks.map(track => `
+        <div class="track-card">
+          <div class="track-info">
+            <h3>${track.title}</h3>
+            <p>${track.artist}</p>
+          </div>
+          <button class="btn-small btn-play" onclick="playTrack(${track.id})">▶ Play</button>
+        </div>
+      `).join('');
+    };
+
+    window.switchTab = (tab) => {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(tab).classList.add('active');
+      event.target.classList.add('active');
+    };
+
+    window.playTrack = async (id) => {
       const track = tracks.find(t => t.id === id);
       if (track) {
         currentTrack = track;
@@ -402,12 +638,103 @@ audio {
         document.getElementById('audio').src = track.url;
         document.getElementById('player').style.display = 'block';
         document.getElementById('audio').play();
+        await api.recordPlay(id);
+        recentlyPlayed = await api.getRecentlyPlayed();
       }
+    };
+
+    window.toggleFavorite = async (id) => {
+      if (favorites.includes(id)) {
+        favorites = favorites.filter(f => f !== id);
+        await api.removeFavorite(id);
+      } else {
+        favorites.push(id);
+        await api.addFavorite(id);
+      }
+      renderLibrary();
+      renderFavorites();
+    };
+
+    window.searchTracks = async () => {
+      const query = document.getElementById('searchInput').value;
+      if (query.length === 0) {
+        renderLibrary();
+      } else {
+        const results = await api.search(query);
+        const list = document.getElementById('tracksList');
+        list.innerHTML = results.map(track => `
+          <div class="track-card">
+            <div class="track-info">
+              <h3>${track.title}</h3>
+              <p>${track.artist}</p>
+              <div class="track-meta">${track.genre}</div>
+            </div>
+            <div class="track-actions">
+              <button class="btn-small btn-play" onclick="playTrack(${track.id})">▶ Play</button>
+              <button class="btn-small btn-favorite ${favorites.includes(track.id) ? 'liked' : ''}" onclick="toggleFavorite(${track.id})">❤</button>
+              <button class="btn-small btn-delete" onclick="delTrack(${track.id})">Delete</button>
+            </div>
+          </div>
+        `).join('');
+      }
+    };
+
+    window.addToQueueUI = (id) => {
+      if (!queue.includes(id)) {
+        queue.push(id);
+        renderQueue();
+        alert('Added to queue');
+      }
+    };
+
+    window.createPlaylist = async () => {
+      const name = document.getElementById('playlistName').value;
+      if (name) {
+        await api.createPlaylist(name);
+        document.getElementById('playlistName').value = '';
+        playlists = await api.getPlaylists();
+        renderPlaylists();
+      }
+    };
+
+    window.deletePlaylistUI = async (id) => {
+      await api.deletePlaylist(id);
+      playlists = await api.getPlaylists();
+      renderPlaylists();
     };
 
     window.delTrack = async (id) => {
       await api.deleteTrack(id);
-      loadTracks();
+      loadAllData();
+    };
+
+    window.clearQueue = () => {
+      queue = [];
+      renderQueue();
+    };
+
+    window.skipNext = () => {
+      if (queue.length > 0) {
+        queue.shift();
+        renderQueue();
+      }
+    };
+
+    window.skipPrevious = () => {
+      if (currentTrack) {
+        playTrack(currentTrack.id);
+      }
+    };
+
+    window.toggleShuffle = () => {
+      shuffle = !shuffle;
+      event.target.style.opacity = shuffle ? '1' : '0.6';
+    };
+
+    window.toggleRepeat = () => {
+      repeat = (repeat + 1) % 3;
+      const labels = ['🔁', '🔂', '🔃'];
+      event.target.textContent = labels[repeat] + ' Repeat';
     };
 
     document.getElementById('uploadBtn').onclick = async () => {
@@ -420,19 +747,25 @@ audio {
 
       const artist = document.getElementById('artist').value;
       const title = document.getElementById('title').value;
+      const genre = document.getElementById('genre').value;
 
-      await api.upload(file, artist, title);
+      await api.upload(file, artist, title, genre);
       
       document.getElementById('artist').value = '';
       document.getElementById('title').value = '';
+      document.getElementById('genre').value = '';
       document.getElementById('file').value = '';
       btn.disabled = false;
       btn.textContent = 'Upload';
 
-      await loadTracks();
+      await loadAllData();
     };
 
-    loadTracks();
+    document.getElementById('volumeControl').oninput = (e) => {
+      document.getElementById('audio').volume = e.target.value / 100;
+    };
+
+    loadAllData();
   </script>
 </body>
 </html>
