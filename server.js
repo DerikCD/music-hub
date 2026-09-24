@@ -85,13 +85,13 @@ app.post('/api/favorites/:id', (req, res) => {
   if (!favorites.includes(id)) {
     favorites.push(id);
   }
-  res.json({ success: true, favorites });
+  res.json({ success: true });
 });
 
 app.delete('/api/favorites/:id', (req, res) => {
   const id = parseInt(req.params.id);
   favorites = favorites.filter(f => f !== id);
-  res.json({ success: true, favorites });
+  res.json({ success: true });
 });
 
 app.get('/api/recently-played', (req, res) => {
@@ -131,47 +131,9 @@ app.get('/api/playlists', (req, res) => {
   res.json(playlists);
 });
 
-app.post('/api/playlists/:pid/add/:tid', (req, res) => {
-  const playlistId = parseInt(req.params.pid);
-  const trackId = parseInt(req.params.tid);
-  const playlist = playlists.find(p => p.id === playlistId);
-  if (playlist && !playlist.tracks.includes(trackId)) {
-    playlist.tracks.push(trackId);
-  }
-  res.json({ success: true });
-});
-
-app.delete('/api/playlists/:pid/remove/:tid', (req, res) => {
-  const playlistId = parseInt(req.params.pid);
-  const trackId = parseInt(req.params.tid);
-  const playlist = playlists.find(p => p.id === playlistId);
-  if (playlist) {
-    playlist.tracks = playlist.tracks.filter(t => t !== trackId);
-  }
-  res.json({ success: true });
-});
-
 app.delete('/api/playlists/:id', (req, res) => {
   const id = parseInt(req.params.id);
   playlists = playlists.filter(p => p.id !== id);
-  res.json({ success: true });
-});
-
-app.get('/api/queue', (req, res) => {
-  const queueTracks = queue.map(id => tracks.find(t => t.id === id)).filter(Boolean);
-  res.json(queueTracks);
-});
-
-app.post('/api/queue/add/:id', (req, res) => {
-  const id = parseInt(req.params.id);
-  if (!queue.includes(id)) {
-    queue.push(id);
-  }
-  res.json({ success: true, queue });
-});
-
-app.post('/api/queue/clear', (req, res) => {
-  queue = [];
   res.json({ success: true });
 });
 
