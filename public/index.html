@@ -1030,13 +1030,26 @@
     </div>
   </div>
 
-  <script>
-    let tracks = [];
+  <script>    let tracks = [];
     let favorites = [];
     let playlists = [];
     let queue = [];
     let currentTrack = null;
     let isPlaying = false;
+    let userSettings = {
+      darkMode: true,
+      quality: 'normal',
+      explicitContent: true,
+      normalizeAudio: false,
+      showLyrics: true,
+      albumArtBg: false,
+      saveHistory: true,
+      analytics: true,
+      recommendations: true,
+      autoplay: true,
+      crossfade: false,
+      shuffleDefault: false
+    };
 
     const api = {
       getTracks: async () => {
@@ -1087,6 +1100,42 @@
       deleteTrack: async (id) => await fetch(`/api/tracks/${id}`, { method: 'DELETE' }).catch(e => console.error(e))
     };
 
+    const loadSettings = () => {
+      const stored = localStorage.getItem('soundwaveSettings');
+      if (stored) {
+        userSettings = { ...userSettings, ...JSON.parse(stored) };
+      }
+      applySettings();
+    };
+
+    const saveSettings = () => {
+      localStorage.setItem('soundwaveSettings', JSON.stringify(userSettings));
+      applySettings();
+    };
+
+    const applySettings = () => {
+      // Apply dark mode
+      if (userSettings.darkMode) {
+        document.body.style.filter = 'none';
+        document.documentElement.style.colorScheme = 'dark';
+      } else {
+        document.body.style.filter = 'invert(0.95)';
+        document.documentElement.style.colorScheme = 'light';
+      }
+
+      // Update all toggles in settings modal
+      const toggles = document.querySelectorAll('.toggle');
+      toggles.forEach((toggle, idx) => {
+        const keys = Object.keys(userSettings);
+        const key = keys[idx];
+        if (userSettings[key]) {
+          toggle.classList.add('active');
+        } else {
+          toggle.classList.remove('active');
+        }
+      });
+    };
+
     const loadData = async () => {
       tracks = await api.getTracks();
       try {
@@ -1117,6 +1166,7 @@
         <div class="track-controls">
           <button class="icon-btn" onclick="toggleFavorite(${track.id}, event)" style="font-size: 1rem;">${favorites.includes(track.id) ? '❤️' : '🤍'}</button>
           <button class="icon-btn" onclick="addToQueue(${track.id}, event)" style="font-size: 1rem;">➕</button>
+          <button class="icon-btn" onclick="delTrack(${track.id}, event)" style="font-size: 1rem; color: #ff6b6b;">🗑</button>
         </div>
       </div>
     `;
@@ -1145,9 +1195,13 @@
         document.getElementById('playerArtist').textContent = track.artist;
         document.getElementById('audio').src = `/stream/${track.filename || track.id}`;
         document.getElementById('playerBar').classList.remove('hidden');
-        await document.getElementById('audio').play();
-        isPlaying = true;
-        document.getElementById('playBtn').textContent = '⏸';
+        try {
+          await document.getElementById('audio').play();
+          isPlaying = true;
+          document.getElementById('playBtn').textContent = '⏸';
+        } catch (e) {
+          console.error('Play error:', e);
+        }
         await api.recordPlay(id);
       }
     };
@@ -1191,6 +1245,14 @@
       render();
     };
 
+    window.delTrack = async (id, e) => {
+      e.stopPropagation();
+      if (confirm('Delete this track?')) {
+        await api.deleteTrack(id);
+        loadData();
+      }
+    };
+
     window.filterGenre = (genre, e) => {
       document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
       e.target.classList.add('active');
@@ -1206,17 +1268,25 @@
 
     window.uploadTrack = async () => {
       const file = document.getElementById('uploadFile').files[0];
-      if (!file) return alert('📁 Select a file');
-      const result = await api.upload(
-        file,
-        document.getElementById('uploadTitle').value || 'Untitled',
-        document.getElementById('uploadArtist').value || 'Unknown',
-        document.getElementById('uploadGenre').value
-      );
+      if (!file) return alert('📁 Select a file (MP3, MP4, WAV, FLAC, etc.)');
+      
+      const title = document.getElementById('uploadTitle').value || 'Untitled';
+      const artist = document.getElementById('uploadArtist').value || 'Unknown';
+      const genre = document.getElementById('uploadGenre').value;
+
+      const btn = document.querySelector('#uploadModal .btn');
+      btn.disabled = true;
+      btn.textContent = 'Uploading...';
+
+      const result = await api.upload(file, title, artist, genre);
+      
+      btn.disabled = false;
+      btn.textContent = 'Upload';
+
       if (result.error) {
-        alert('❌ Upload failed: ' + result.error);
+        alert('❌ Error: ' + result.error);
       } else {
-        alert('✓ Track uploaded!');
+        alert('✅ Track uploaded successfully!');
         closeModal('upload');
         document.getElementById('uploadTitle').value = '';
         document.getElementById('uploadArtist').value = '';
@@ -1242,9 +1312,25 @@
 
     window.toggleSetting = (el) => {
       el.classList.toggle('active');
+      updateSettingsFromUI();
     };
 
+    window.updateSettingsFromUI = () => {
+      const toggles = document.querySelectorAll('.toggle');
+      const keys = ['explicitContent', 'normalizeAudio', 'darkMode', 'showLyrics', 'albumArtBg', 'saveHistory', 'analytics', 'recommendations', 'autoplay', 'crossfade', 'shuffleDefault'];
+      
+      toggles.forEach((toggle, idx) => {
+        if (keys[idx]) {
+          userSettings[keys[idx]] = toggle.classList.contains('active');
+        }
+      });
+    
+      saveSettings();
+    };
+    // Initialize on load
+    loadSettings();
     loadData();
+    
   </script>
 </body>
 </html>
