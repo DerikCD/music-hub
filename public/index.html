@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SoundWave Pro - Premium Music Streaming</title>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>SoundWave - Music Streaming</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -13,115 +13,37 @@
     }
 
     :root {
-      --primary: #00d4ff;
-      --secondary: #0099ff;
+      --primary: #1DB954;
+      --secondary: #1ed760;
+      --accent: #ff006e;
       --dark: #0f0f0f;
-      --darker: #1a1a2e;
-      --card: rgba(255, 255, 255, 0.05);
+      --darker: #1a1a1a;
+      --card: rgba(255, 255, 255, 0.08);
       --border: rgba(255, 255, 255, 0.1);
       --text: #fff;
       --text-secondary: #b3b3b3;
     }
 
-    body {
-      font-family: 'Outfit', sans-serif;
+    html, body {
+      width: 100%;
+      height: 100%;
+      font-family: 'Inter', sans-serif;
       background: var(--dark);
       color: var(--text);
-      min-height: 100vh;
       overflow-x: hidden;
     }
 
-    .wrapper {
+    .container {
       display: flex;
-    }
-
-    /* SIDEBAR */
-    .sidebar {
-      width: 280px;
-      background: linear-gradient(180deg, #1a1a2e 0%, #0f1419 100%);
-      padding: 1.5rem;
-      border-right: 1px solid var(--border);
+      flex-direction: column;
       height: 100vh;
-      overflow-y: auto;
-      position: fixed;
-      left: 0;
-      top: 0;
     }
 
-    .logo {
-      font-size: 1.8rem;
-      font-weight: 800;
-      margin-bottom: 2rem;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: -0.5px;
-    }
-
-    .nav-section {
-      margin-bottom: 2rem;
-    }
-
-    .nav-label {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      color: #666;
-      font-weight: 600;
-      margin-bottom: 1rem;
-      letter-spacing: 1px;
-    }
-
-    .nav-item {
-      padding: 0.875rem 1.25rem;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      color: var(--text-secondary);
-      border: none;
-      background: transparent;
-      text-align: left;
-      width: 100%;
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.95rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .nav-item:hover {
-      color: var(--text);
-      background: var(--card);
-    }
-
-    .nav-item.active {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      color: #000;
-      font-weight: 600;
-    }
-
-    .nav-item::before {
-      content: '';
-      display: inline-block;
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: currentColor;
-    }
-
-    /* MAIN */
-    .main {
-      margin-left: 280px;
-      flex: 1;
-      background: linear-gradient(180deg, var(--dark) 0%, var(--darker) 100%);
-      min-height: 100vh;
-    }
-
-    .top-bar {
-      padding: 1.5rem 2rem;
-      background: rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(10px);
+    /* TOP BAR */
+    .topbar {
+      padding: 1rem 1.5rem;
+      background: linear-gradient(180deg, rgba(15, 15, 15, 0.8) 0%, rgba(15, 15, 15, 0) 100%);
+      backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
@@ -131,28 +53,25 @@
       z-index: 100;
     }
 
-    .search-bar {
-      flex: 1;
-      max-width: 400px;
-      padding: 0.75rem 1.25rem;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      color: var(--text);
-      font-family: 'Outfit', sans-serif;
-      transition: all 0.3s ease;
-    }
-
-    .search-bar:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
-    }
-
-    .top-controls {
+    .topbar-left {
       display: flex;
       gap: 1rem;
-      margin-left: auto;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -1px;
+    }
+
+    .topbar-right {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
     }
 
     .icon-btn {
@@ -163,21 +82,57 @@
       border: 1px solid var(--border);
       color: var(--text-secondary);
       cursor: pointer;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       transition: all 0.3s ease;
       display: flex;
       align-items: center;
       justify-content: center;
+      backdrop-filter: blur(10px);
     }
 
     .icon-btn:hover {
-      background: rgba(0, 212, 255, 0.1);
+      background: rgba(29, 185, 84, 0.15);
       border-color: var(--primary);
       color: var(--primary);
+      transform: scale(1.1);
     }
 
+    /* CATEGORY PILLS */
+    .categories {
+      padding: 1rem 1.5rem;
+      display: flex;
+      gap: 0.75rem;
+      overflow-x: auto;
+      background: linear-gradient(180deg, rgba(15, 15, 15, 0.5) 0%, rgba(15, 15, 15, 0) 100%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pill {
+      padding: 0.5rem 1.25rem;
+      border-radius: 50px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text-secondary);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .pill:hover, .pill.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #000;
+      transform: scale(1.05);
+    }
+
+    /* MAIN CONTENT */
     .content {
-      padding: 2rem;
+      flex: 1;
+      overflow-y: auto;
+      padding: 2rem 1.5rem;
+      padding-bottom: 100px;
     }
 
     .section {
@@ -190,47 +145,102 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .section-title {
-      font-size: 2rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
       font-weight: 800;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       letter-spacing: -1px;
     }
 
-    /* CARDS */
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
+    /* ALBUM GRID */
+    .album-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .album-card {
+      position: relative;
+      aspect-ratio: 1;
       border-radius: 12px;
-      padding: 1.5rem;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: linear-gradient(135deg, var(--card) 0%, rgba(29, 185, 84, 0.1) 100%);
+      border: 1px solid var(--border);
+    }
+
+    .album-card:hover {
+      transform: scale(1.08);
+      border-color: var(--primary);
+    }
+
+    .album-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: linear-gradient(135deg, #1DB954 0%, #1a1a2e 100%);
+    }
+
+    .album-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.8) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1rem;
+      opacity: 0;
       transition: all 0.3s ease;
     }
 
-    .card:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(0, 212, 255, 0.5);
-      transform: translateY(-4px);
+    .album-card:hover .album-overlay {
+      opacity: 1;
     }
 
-    .track-card {
+    .album-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      line-height: 1.3;
+      margin-bottom: 0.25rem;
+    }
+
+    .album-artist {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    /* TRACK LIST */
+    .track-item {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      gap: 1rem;
       padding: 1rem;
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 8px;
-      margin-bottom: 1rem;
+      border-radius: 10px;
+      margin-bottom: 0.75rem;
       transition: all 0.3s ease;
+      cursor: pointer;
     }
 
-    .track-card:hover {
-      background: rgba(255, 255, 255, 0.08);
+    .track-item:hover {
+      background: rgba(29, 185, 84, 0.15);
       border-color: var(--primary);
+    }
+
+    .track-thumbnail {
+      width: 50px;
+      height: 50px;
+      border-radius: 8px;
+      object-fit: cover;
+      background: linear-gradient(135deg, #1DB954 0%, #1a1a2e 100%);
     }
 
     .track-info {
@@ -240,127 +250,137 @@
     .track-title {
       font-weight: 600;
       margin-bottom: 0.25rem;
+      font-size: 0.95rem;
     }
 
     .track-artist {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-    }
-
-    .btn {
-      padding: 0.75rem 1.5rem;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      color: #000;
-      border: none;
-      border-radius: 24px;
-      font-weight: 600;
-      font-family: 'Outfit', sans-serif;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 0.9rem;
-    }
-
-    .btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 24px rgba(0, 212, 255, 0.3);
-    }
-
-    .btn-small {
-      padding: 0.5rem 1rem;
       font-size: 0.8rem;
-      border-radius: 20px;
-    }
-
-    .input-group {
-      margin-bottom: 1.5rem;
-    }
-
-    .input-group label {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
       color: var(--text-secondary);
     }
 
-    input[type="text"],
-    input[type="email"],
-    input[type="password"],
-    input[type="file"],
-    select {
-      width: 100%;
-      padding: 0.875rem;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border);
+    .track-controls {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    /* BOTTOM PLAYER */
+    .player-bar {
+      position: fixed;
+      bottom: 70px;
+      left: 0;
+      right: 0;
+      padding: 1rem 1.5rem;
+      background: linear-gradient(135deg, rgba(29, 185, 84, 0.2) 0%, rgba(29, 185, 84, 0.05) 100%);
+      border-top: 1px solid var(--primary);
+      border: 1px solid var(--primary);
+      margin: 0 1rem;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      z-index: 99;
+      backdrop-filter: blur(20px);
+    }
+
+    .player-thumb {
+      width: 55px;
+      height: 55px;
       border-radius: 8px;
-      color: var(--text);
-      font-family: 'Outfit', sans-serif;
-      transition: all 0.3s ease;
+      object-fit: cover;
+      background: linear-gradient(135deg, #1DB954 0%, #1a1a2e 100%);
     }
 
-    input:focus, select:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+    .player-info {
+      flex: 1;
     }
 
-    .player-large {
-      background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(0, 153, 255, 0.05) 100%);
-      border: 1px solid rgba(0, 212, 255, 0.3);
-      border-radius: 16px;
-      padding: 2rem;
-      margin-bottom: 2rem;
-      text-align: center;
+    .player-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
     }
 
-    .player-large h2 {
-      font-size: 1.8rem;
-      margin-bottom: 0.5rem;
-      color: var(--primary);
-    }
-
-    .player-large p {
+    .player-artist {
+      font-size: 0.8rem;
       color: var(--text-secondary);
-      margin-bottom: 1.5rem;
+    }
+
+    .player-controls {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .ctrl-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: none;
+      color: #000;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+    }
+
+    .ctrl-btn:hover {
+      background: var(--secondary);
+      transform: scale(1.1);
     }
 
     audio {
-      width: 100%;
-      margin: 1.5rem 0;
+      width: 100px;
       accent-color: var(--primary);
     }
 
-    .controls {
+    /* BOTTOM NAV */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 0.75rem 1.5rem;
+      background: linear-gradient(180deg, rgba(15, 15, 15, 0.8) 0%, rgba(15, 15, 15, 1) 100%);
+      border-top: 1px solid var(--border);
       display: flex;
-      gap: 1rem;
-      margin-top: 1.5rem;
-      flex-wrap: wrap;
-      justify-content: center;
+      justify-content: space-around;
+      align-items: center;
+      z-index: 100;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .empty {
-      text-align: center;
-      padding: 3rem;
+    .nav-tab {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+      cursor: pointer;
       color: var(--text-secondary);
+      transition: all 0.3s ease;
+      font-size: 0.75rem;
+      font-weight: 500;
     }
 
+    .nav-tab:hover, .nav-tab.active {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .nav-icon {
+      font-size: 1.5rem;
+    }
+
+    /* MODAL */
     .modal {
       display: none;
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(5px);
-      z-index: 1000;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      z-index: 1001;
       align-items: center;
       justify-content: center;
     }
@@ -370,361 +390,488 @@
     }
 
     .modal-content {
-      background: var(--darker);
+      background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
       padding: 2rem;
       border-radius: 16px;
       max-width: 500px;
       width: 90%;
       border: 1px solid var(--border);
+      max-height: 80vh;
+      overflow-y: auto;
     }
 
-    .modal-close {
-      float: right;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: var(--text-secondary);
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 1rem;
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       margin-bottom: 2rem;
     }
 
-    .stat-card {
-      background: var(--card);
-      padding: 1.5rem;
-      border-radius: 12px;
-      text-align: center;
-      border: 1px solid var(--border);
-    }
-
-    .stat-number {
-      font-size: 2rem;
+    .modal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
       font-weight: 800;
-      color: var(--primary);
-      margin-bottom: 0.5rem;
     }
 
-    .stat-label {
-      font-size: 0.85rem;
+    .modal-close {
+      font-size: 2rem;
+      cursor: pointer;
       color: var(--text-secondary);
-      text-transform: uppercase;
-      font-weight: 600;
+      transition: all 0.3s ease;
     }
 
-    @media (max-width: 768px) {
-      .sidebar {
-        width: 0;
-        transform: translateX(-100%);
-      }
+    .modal-close:hover {
+      color: var(--primary);
+    }
 
-      .main {
-        margin-left: 0;
+    /* FORMS */
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="file"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 0.875rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      transition: all 0.3s ease;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 20px rgba(29, 185, 84, 0.3);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .btn {
+      padding: 0.875rem 2rem;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: #000;
+      border: none;
+      border-radius: 50px;
+      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+      letter-spacing: 0.5px;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(29, 185, 84, 0.4);
+    }
+
+    .btn-secondary {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--primary);
+      background: rgba(29, 185, 84, 0.15);
+    }
+
+    /* SETTINGS GRID */
+    .settings-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .settings-section {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2rem;
+    }
+
+    .settings-section:last-child {
+      border-bottom: none;
+    }
+
+    .settings-section-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .setting-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .setting-item:last-child {
+      border-bottom: none;
+    }
+
+    .toggle {
+      width: 50px;
+      height: 28px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .toggle.active {
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .toggle::after {
+      content: '';
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      background: #fff;
+      border-radius: 50%;
+      top: 2px;
+      left: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .toggle.active::after {
+      left: calc(100% - 26px);
+    }
+
+    .empty {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 640px) {
+      .album-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 1rem;
       }
 
       .section-title {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
       }
 
-      .grid {
-        grid-template-columns: 1fr;
+      .player-bar {
+        bottom: 80px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="wrapper">
-    <!-- SIDEBAR -->
-    <div class="sidebar">
-      <div class="logo">♫ SoundWave Pro</div>
-
-      <div class="nav-section">
-        <div class="nav-label">Menu</div>
-        <button class="nav-item active" onclick="switchTab('home')">🏠 Home</button>
-        <button class="nav-item" onclick="switchTab('explore')">🔍 Discover</button>
-        <button class="nav-item" onclick="switchTab('library')">📚 My Library</button>
-        <button class="nav-item" onclick="switchTab('playlists')">🎵 Playlists</button>
+  <div class="container">
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="logo">♫ SoundWave</div>
       </div>
-
-      <div class="nav-section">
-        <div class="nav-label">Collection</div>
-        <button class="nav-item" onclick="switchTab('favorites')">❤️ Liked Songs</button>
-        <button class="nav-item" onclick="switchTab('recent')">🕐 Recently Played</button>
-        <button class="nav-item" onclick="switchTab('popular')">🔥 Trending</button>
-      </div>
-
-      <div class="nav-section">
-        <div class="nav-label">More</div>
-        <button class="nav-item" onclick="switchTab('queue')">📋 Queue</button>
-        <button class="nav-item" onclick="switchTab('analytics')">📊 Analytics</button>
-        <button class="nav-item" onclick="switchTab('settings')">⚙️ Settings</button>
-        <button class="nav-item" onclick="switchTab('profile')">👤 Profile</button>
+      <div class="topbar-right">
+        <button class="icon-btn" onclick="openModal('search')">🔍</button>
+        <button class="icon-btn" onclick="openModal('notify')">🔔</button>
+        <button class="icon-btn" onclick="openModal('settings')">⚙️</button>
       </div>
     </div>
 
-    <!-- MAIN -->
-    <div class="main">
-      <!-- TOP BAR -->
-      <div class="top-bar">
-        <input type="search" class="search-bar" id="searchInput" placeholder="Search songs, artists, playlists..." onkeyup="searchTracks()">
-        <div class="top-controls">
-          <button class="icon-btn" onclick="openModal('notif')">🔔</button>
-          <button class="icon-btn" onclick="openModal('theme')">🌙</button>
-        </div>
+    <!-- CATEGORIES -->
+    <div class="categories">
+      <div class="pill active" onclick="filterGenre('all', event)">All</div>
+      <div class="pill" onclick="filterGenre('pop', event)">Pop</div>
+      <div class="pill" onclick="filterGenre('rock', event)">Rock</div>
+      <div class="pill" onclick="filterGenre('hiphop', event)">Hip-Hop</div>
+      <div class="pill" onclick="filterGenre('electronic', event)">Electronic</div>
+      <div class="pill" onclick="filterGenre('jazz', event)">Jazz</div>
+      <div class="pill" onclick="filterGenre('indie', event)">Indie</div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+      <!-- HOME -->
+      <div id="home" class="section active">
+        <div class="section-title">Recently Played</div>
+        <div class="album-grid" id="homeGrid"></div>
+
+        <h3 style="font-weight: 700; margin: 2rem 0 1rem 0; font-size: 1.3rem;">New Uploads</h3>
+        <div class="album-grid" id="newUploads"></div>
       </div>
 
-      <div class="content">
-        <!-- HOME -->
-        <div id="home" class="section active">
-          <div class="section-title">Welcome Back</div>
+      <!-- BROWSE -->
+      <div id="browse" class="section">
+        <div class="section-title">Browse All</div>
+        <div class="album-grid" id="browseGrid"></div>
+      </div>
 
-          <div class="player-large">
-            <h2 id="playerTitle">Now Playing</h2>
-            <p id="playerArtist"></p>
-            <audio id="audio" controls></audio>
-            <div class="controls">
-              <button class="btn btn-small" onclick="toggleShuffle()">🔀 Shuffle</button>
-              <button class="btn btn-small" onclick="toggleRepeat()">🔁 Repeat</button>
-              <button class="btn btn-small" onclick="skipPrevious()">⏮ Prev</button>
-              <button class="btn btn-small" onclick="skipNext()">Next ⏭</button>
-              <input type="range" id="volumeControl" min="0" max="100" value="100" style="width: 150px;">
-            </div>
-          </div>
+      <!-- SEARCH -->
+      <div id="search" class="section">
+        <div class="section-title">Search Results</div>
+        <div id="searchResults"></div>
+      </div>
 
-          <h3 style="margin-bottom: 1.5rem; font-size: 1.3rem;">📤 Upload New Track</h3>
-          <div class="card" style="max-width: 500px;">
-            <div class="input-group">
-              <label>Artist Name</label>
-              <input type="text" id="artist" placeholder="Enter artist name">
-            </div>
-            <div class="input-group">
-              <label>Track Title</label>
-              <input type="text" id="title" placeholder="Enter track title">
-            </div>
-            <div class="input-group">
-              <label>Genre</label>
-              <select id="genre">
-                <option>Pop</option>
-                <option>Rock</option>
-                <option>Hip-Hop</option>
-                <option>Jazz</option>
-                <option>Electronic</option>
-                <option>Classical</option>
-                <option>Other</option>
-              </select>
-            </div>
-            <div class="input-group">
-              <label>Audio/Video File</label>
-              <input type="file" id="file" accept="audio/*,video/*">
-            </div>
-            <button class="btn" id="uploadBtn" style="width: 100%;">Upload Track</button>
-          </div>
+      <!-- LIBRARY -->
+      <div id="library" class="section">
+        <div class="section-title">My Library</div>
+        <div style="margin-bottom: 1.5rem;">
+          <button class="btn btn-secondary" onclick="openModal('upload')">📤 Upload New Track</button>
         </div>
+        <div id="libraryList"></div>
+      </div>
 
-        <!-- EXPLORE -->
-        <div id="explore" class="section">
-          <div class="section-title">🔍 Discover New Music</div>
-          <div class="stats-grid">
-            <div class="stat-card">
-              <div class="stat-number" id="totalTracks">0</div>
-              <div class="stat-label">Total Tracks</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-number" id="totalPlays">0</div>
-              <div class="stat-label">Total Plays</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-number" id="favoriteCount">0</div>
-              <div class="stat-label">Favorites</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-number" id="playlistCount">0</div>
-              <div class="stat-label">Playlists</div>
-            </div>
-          </div>
+      <!-- FAVORITES -->
+      <div id="favorites" class="section">
+        <div class="section-title">❤️ Liked Songs</div>
+        <div id="favoritesList"></div>
+      </div>
 
-          <h3 style="margin-bottom: 1.5rem;">🔥 Most Played</h3>
-          <div id="exploreList"></div>
-        </div>
+      <!-- PLAYLISTS -->
+      <div id="playlists" class="section">
+        <div class="section-title">🎵 My Playlists</div>
+        <button class="btn" onclick="openModal('newPlaylist')" style="margin-bottom: 1.5rem;">+ New Playlist</button>
+        <div id="playlistsList"></div>
+      </div>
 
-        <!-- LIBRARY -->
-        <div id="library" class="section">
-          <div class="section-title">📚 My Library</div>
-          <div id="tracksList"></div>
-        </div>
+      <!-- QUEUE -->
+      <div id="queue" class="section">
+        <div class="section-title">📋 Queue</div>
+        <button class="btn btn-secondary" onclick="clearQueue()" style="margin-bottom: 1.5rem;">Clear Queue</button>
+        <div id="queueList"></div>
+      </div>
+    </div>
 
-        <!-- FAVORITES -->
-        <div id="favorites" class="section">
-          <div class="section-title">❤️ Liked Songs</div>
-          <div id="favoritesList"></div>
-        </div>
+    <!-- PLAYER BAR -->
+    <div class="player-bar" id="playerBar" style="display: none;">
+      <img class="player-thumb" id="playerThumb" src="">
+      <div class="player-info">
+        <div class="player-title" id="playerTitle">Select a track</div>
+        <div class="player-artist" id="playerArtist"></div>
+      </div>
+      <div class="player-controls">
+        <button class="ctrl-btn" onclick="skipPrev()">⏮</button>
+        <button class="ctrl-btn" onclick="togglePlay()" id="playBtn">▶</button>
+        <button class="ctrl-btn" onclick="skipNext()">⏭</button>
+        <audio id="audio" style="width: auto;"></audio>
+      </div>
+    </div>
 
-        <!-- RECENT -->
-        <div id="recent" class="section">
-          <div class="section-title">🕐 Recently Played</div>
-          <div id="recentList"></div>
-        </div>
-
-        <!-- POPULAR -->
-        <div id="popular" class="section">
-          <div class="section-title">🔥 Trending Now</div>
-          <div id="popularList"></div>
-        </div>
-
-        <!-- PLAYLISTS -->
-        <div id="playlists" class="section">
-          <div class="section-title">🎵 Playlists</div>
-          <div class="card" style="max-width: 400px; margin-bottom: 2rem;">
-            <div class="input-group">
-              <label>Create New Playlist</label>
-              <input type="text" id="playlistName" placeholder="Playlist name">
-            </div>
-            <button class="btn" onclick="createPlaylist()" style="width: 100%;">Create</button>
-          </div>
-          <div id="playlistsList"></div>
-        </div>
-
-        <!-- QUEUE -->
-        <div id="queue" class="section">
-          <div class="section-title">📋 Queue</div>
-          <button class="btn" onclick="clearQueue()" style="margin-bottom: 1.5rem;">Clear Queue</button>
-          <div id="queueList"></div>
-        </div>
-
-        <!-- ANALYTICS -->
-        <div id="analytics" class="section">
-          <div class="section-title">📊 Your Analytics</div>
-          <div class="stats-grid">
-            <div class="stat-card">
-              <div class="stat-number" id="lifetimePlays">0</div>
-              <div class="stat-label">Lifetime Plays</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-number" id="topTrackPlays">0</div>
-              <div class="stat-label">Top Track Plays</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-number" id="artistCount">0</div>
-              <div class="stat-label">Artists</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-number" id="genreCount">0</div>
-              <div class="stat-label">Genres</div>
-            </div>
-          </div>
-          <h3 style="margin-bottom: 1.5rem;">Top Artists</h3>
-          <div id="topArtists"></div>
-        </div>
-
-        <!-- SETTINGS -->
-        <div id="settings" class="section">
-          <div class="section-title">⚙️ Settings</div>
-
-          <div class="card" style="max-width: 600px; margin-bottom: 2rem;">
-            <h3 style="margin-bottom: 1.5rem;">🎨 Display</h3>
-            <div class="input-group">
-              <label>Theme</label>
-              <select id="themeSelect" onchange="changeTheme()">
-                <option value="dark">Dark Mode</option>
-                <option value="light">Light Mode</option>
-              </select>
-            </div>
-
-            <h3 style="margin: 2rem 0 1.5rem 0;">🔊 Audio</h3>
-            <div class="input-group">
-              <label>Default Quality</label>
-              <select>
-                <option>High (320kbps)</option>
-                <option selected>Normal (192kbps)</option>
-                <option>Low (128kbps)</option>
-              </select>
-            </div>
-
-            <h3 style="margin: 2rem 0 1.5rem 0;">🔒 Privacy</h3>
-            <div style="display: flex; align-items: center; margin-bottom: 1rem;">
-              <input type="checkbox" id="historyCheck" checked>
-              <label style="margin-left: 0.75rem; margin-bottom: 0;">Save listening history</label>
-            </div>
-            <div style="display: flex; align-items: center; margin-bottom: 1rem;">
-              <input type="checkbox" id="analyticsCheck" checked>
-              <label style="margin-left: 0.75rem; margin-bottom: 0;">Allow analytics tracking</label>
-            </div>
-
-            <button class="btn" style="width: 100%; margin-top: 2rem;">Save Settings</button>
-          </div>
-        </div>
-
-        <!-- PROFILE -->
-        <div id="profile" class="section">
-          <div class="section-title">👤 Profile</div>
-
-          <div class="card" style="max-width: 600px;">
-            <h3 style="margin-bottom: 1.5rem;">Account Information</h3>
-            <div class="input-group">
-              <label>Username</label>
-              <input type="text" id="username" value="SoundWave User" placeholder="Your username">
-            </div>
-            <div class="input-group">
-              <label>Email</label>
-              <input type="email" id="userEmail" value="user@soundwave.music" placeholder="Your email">
-            </div>
-            <div class="input-group">
-              <label>Bio</label>
-              <textarea id="userBio" style="width: 100%; padding: 0.875rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-family: 'Outfit', sans-serif; resize: vertical; min-height: 100px;" placeholder="Tell us about yourself..."></textarea>
-            </div>
-
-            <button class="btn" style="width: 100%; margin-top: 1.5rem;">Update Profile</button>
-            <button class="btn" style="width: 100%; margin-top: 1rem; background: rgba(255, 107, 107, 0.2); color: #ff6b6b;">Delete Account</button>
-          </div>
-        </div>
+    <!-- BOTTOM NAV -->
+    <div class="bottom-nav">
+      <div class="nav-tab active" onclick="switchTab('home', event)">
+        <div class="nav-icon">🏠</div>
+        <div>Home</div>
+      </div>
+      <div class="nav-tab" onclick="switchTab('browse', event)">
+        <div class="nav-icon">🎵</div>
+        <div>Browse</div>
+      </div>
+      <div class="nav-tab" onclick="switchTab('library', event)">
+        <div class="nav-icon">📚</div>
+        <div>Library</div>
+      </div>
+      <div class="nav-tab" onclick="switchTab('playlists', event)">
+        <div class="nav-icon">🎼</div>
+        <div>Playlists</div>
+      </div>
+      <div class="nav-tab" onclick="switchTab('favorites', event)">
+        <div class="nav-icon">❤️</div>
+        <div>Liked</div>
       </div>
     </div>
   </div>
 
   <!-- MODALS -->
-  <div id="notifModal" class="modal">
+  <div id="uploadModal" class="modal">
     <div class="modal-content">
-      <span class="modal-close" onclick="closeModal('notif')">&times;</span>
-      <h2 style="margin-bottom: 1.5rem;">🔔 Notifications</h2>
-      <div>
-        <p style="margin-bottom: 1rem; color: var(--text-secondary);">✓ Upload successful</p>
-        <p style="margin-bottom: 1rem; color: var(--text-secondary);">✓ New track added to favorites</p>
-        <p style="color: var(--text-secondary);">✓ Queue updated</p>
+      <div class="modal-header">
+        <div class="modal-title">Upload Track</div>
+        <div class="modal-close" onclick="closeModal('upload')">&times;</div>
+      </div>
+      <div class="form-group">
+        <label>Track Title</label>
+        <input type="text" id="uploadTitle" placeholder="Enter song title">
+      </div>
+      <div class="form-group">
+        <label>Artist Name</label>
+        <input type="text" id="uploadArtist" placeholder="Enter artist name">
+      </div>
+      <div class="form-group">
+        <label>Genre</label>
+        <select id="uploadGenre">
+          <option>Pop</option>
+          <option>Rock</option>
+          <option>Hip-Hop</option>
+          <option>Electronic</option>
+          <option>Jazz</option>
+          <option>Indie</option>
+          <option>Classical</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Audio File</label>
+        <input type="file" id="uploadFile" accept="audio/*,video/*">
+      </div>
+      <button class="btn" onclick="uploadTrack()" style="width: 100%;">Upload</button>
+    </div>
+  </div>
+
+  <div id="settingsModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">Settings</div>
+        <div class="modal-close" onclick="closeModal('settings')">&times;</div>
+      </div>
+
+      <div class="settings-grid">
+        <!-- SOUND -->
+        <div class="settings-section">
+          <div class="settings-section-title">🔊 Sound & Audio</div>
+          <div class="setting-item">
+            <div>Quality</div>
+            <select style="width: auto; padding: 0.5rem;">
+              <option>High (320kbps)</option>
+              <option selected>Normal (192kbps)</option>
+              <option>Low (128kbps)</option>
+            </select>
+          </div>
+          <div class="setting-item">
+            <div>Explicit Content</div>
+            <div class="toggle active" onclick="toggleSetting(this)"></div>
+          </div>
+          <div class="setting-item">
+            <div>Normalize Audio</div>
+            <div class="toggle" onclick="toggleSetting(this)"></div>
+          </div>
+        </div>
+
+        <!-- DISPLAY -->
+        <div class="settings-section">
+          <div class="settings-section-title">🎨 Display & Theme</div>
+          <div class="setting-item">
+            <div>Dark Mode</div>
+            <div class="toggle active" onclick="toggleSetting(this)"></div>
+          </div>
+          <div class="setting-item">
+            <div>Show Lyrics</div>
+            <div class="toggle active" onclick="toggleSetting(this)"></div>
+          </div>
+          <div class="setting-item">
+            <div>Album Art Background</div>
+            <div class="toggle" onclick="toggleSetting(this)"></div>
+          </div>
+        </div>
+
+        <!-- PRIVACY -->
+        <div class="settings-section">
+          <div class="settings-section-title">🔒 Privacy & Data</div>
+          <div class="setting-item">
+            <div>Save History</div>
+            <div class="toggle active" onclick="toggleSetting(this)"></div>
+          </div>
+          <div class="setting-item">
+            <div>Analytics</div>
+            <div class="toggle active" onclick="toggleSetting(this)"></div>
+          </div>
+          <div class="setting-item">
+            <div>Allow Recommendations</div>
+            <div class="toggle active" onclick="toggleSetting(this)"></div>
+          </div>
+        </div>
+
+        <!-- PLAYBACK -->
+        <div class="settings-section">
+          <div class="settings-section-title">▶️ Playback</div>
+          <div class="setting-item">
+            <div>Autoplay Similar</div>
+            <div class="toggle active" onclick="toggleSetting(this)"></div>
+          </div>
+          <div class="setting-item">
+            <div>Crossfade Songs</div>
+            <div class="toggle" onclick="toggleSetting(this)"></div>
+          </div>
+          <div class="setting-item">
+            <div>Shuffle by Default</div>
+            <div class="toggle" onclick="toggleSetting(this)"></div>
+          </div>
+        </div>
+
+        <!-- ABOUT -->
+        <div class="settings-section">
+          <div class="settings-section-title">ℹ️ About</div>
+          <div style="padding: 1rem 0; color: var(--text-secondary); font-size: 0.9rem;">
+            <p style="margin-bottom: 0.5rem;"><strong>SoundWave Pro</strong></p>
+            <p>Version 2.0.1</p>
+            <p style="margin-top: 1rem;">© 2024 SoundWave. All rights reserved.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div id="themeModal" class="modal">
+  <div id="newPlaylistModal" class="modal">
     <div class="modal-content">
-      <span class="modal-close" onclick="closeModal('theme')">&times;</span>
-      <h2 style="margin-bottom: 1.5rem;">🌙 Theme Settings</h2>
-      <button class="btn" onclick="applyTheme('dark')" style="width: 100%; margin-bottom: 1rem;">Dark Mode</button>
-      <button class="btn" onclick="applyTheme('light')" style="width: 100%;">Light Mode</button>
+      <div class="modal-header">
+        <div class="modal-title">New Playlist</div>
+        <div class="modal-close" onclick="closeModal('newPlaylist')">&times;</div>
+      </div>
+      <div class="form-group">
+        <label>Playlist Name</label>
+        <input type="text" id="newPlaylistName" placeholder="e.g. Summer Vibes">
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea id="newPlaylistDesc" placeholder="Add a description..."></textarea>
+      </div>
+      <button class="btn" onclick="createPlaylist()" style="width: 100%;">Create Playlist</button>
+    </div>
+  </div>
+
+  <div id="notifyModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">Notifications</div>
+        <div class="modal-close" onclick="closeModal('notify')">&times;</div>
+      </div>
+      <div id="notificationsList" style="color: var(--text-secondary); text-align: center; padding: 2rem;">
+        No new notifications
+      </div>
     </div>
   </div>
 
   <script>
     let tracks = [];
     let favorites = [];
-    let recentlyPlayed = [];
     let playlists = [];
     let queue = [];
     let currentTrack = null;
-    let shuffle = false;
-    let repeat = 0;
+    let isPlaying = false;
+    let notifications = [];
 
     const api = {
-      upload: async (file, artist, title, genre) => {
-        const form = new FormData();
-        form.append('track', file);
-        form.append('artist', artist);
-        form.append('title', title);
-        form.append('genre', genre);
-        const res = await fetch('/api/upload', { method: 'POST', body: form });
-        return res.json();
-      },
       getTracks: async () => {
         const res = await fetch('/api/tracks');
         return res.json();
@@ -733,90 +880,66 @@
         const res = await fetch(`/api/tracks/search/${query}`);
         return res.json();
       },
-      getFavorites: async () => {
-        const res = await fetch('/api/favorites');
-        return res.json();
+      upload: async (file, title, artist, genre) => {
+        const form = new FormData();
+        form.append('track', file);
+        form.append('title', title);
+        form.append('artist', artist);
+        form.append('genre', genre);
+        return fetch('/api/upload', { method: 'POST', body: form }).then(r => r.json());
       },
-      addFavorite: async (id) => {
-        await fetch(`/api/favorites/${id}`, { method: 'POST' });
-      },
-      removeFavorite: async (id) => {
-        await fetch(`/api/favorites/${id}`, { method: 'DELETE' });
-      },
-      getRecentlyPlayed: async () => {
-        const res = await fetch('/api/recently-played');
-        return res.json();
-      },
-      recordPlay: async (id) => {
-        await fetch(`/api/played/${id}`, { method: 'POST' });
-      },
-      getMostPlayed: async () => {
-        const res = await fetch('/api/most-played');
-        return res.json();
-      },
-      getPlaylists: async () => {
-        const res = await fetch('/api/playlists');
-        return res.json();
-      },
-      createPlaylist: async (name) => {
-        const res = await fetch('/api/playlists', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name }) });
-        return res.json();
-      },
-      deletePlaylist: async (id) => {
-        await fetch(`/api/playlists/${id}`, { method: 'DELETE' });
-      },
-      deleteTrack: async (id) => {
-        await fetch(`/api/tracks/${id}`, { method: 'DELETE' });
-      }
+      addFavorite: async (id) => await fetch(`/api/favorites/${id}`, { method: 'POST' }),
+      removeFavorite: async (id) => await fetch(`/api/favorites/${id}`, { method: 'DELETE' }),
+      recordPlay: async (id) => await fetch(`/api/played/${id}`, { method: 'POST' }),
+      createPlaylist: async (name) => await fetch('/api/playlists', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name }) }).then(r => r.json()),
+      deleteTrack: async (id) => await fetch(`/api/tracks/${id}`, { method: 'DELETE' })
     };
 
-    const renderTrack = (track) => `
-      <div class="track-card">
-        <div class="track-info">
-          <div class="track-title">${track.title}</div>
-          <div class="track-artist">${track.artist} • ${track.genre}</div>
-        </div>
-        <div style="display: flex; gap: 0.5rem;">
-          <button class="btn btn-small" onclick="playTrack(${track.id})">▶</button>
-          <button class="btn btn-small" onclick="toggleFavorite(${track.id})" style="background: ${favorites.includes(track.id) ? 'rgba(255, 107, 107, 0.4)' : 'rgba(0, 212, 255, 0.2)'}; color: ${favorites.includes(track.id) ? '#ff6b6b' : '#00d4ff'};">❤</button>
-          <button class="btn btn-small" onclick="addToQueueUI(${track.id})">+</button>
-          <button class="btn btn-small" onclick="delTrack(${track.id})" style="background: rgba(255, 107, 107, 0.2); color: #ff6b6b;">✕</button>
+    const loadData = async () => {
+      tracks = await api.getTracks();
+      favorites = (await fetch('/api/favorites').then(r => r.json())).map(t => t.id);
+      playlists = await api.createPlaylist('');
+      render();
+    };
+
+    const renderAlbumCard = (track) => `
+      <div class="album-card" onclick="playTrack(${track.id})">
+        <div class="album-thumb" style="background: linear-gradient(135deg, #1DB954 0%, #1a1a2e 100%);"></div>
+        <div class="album-overlay">
+          <div class="album-title">${track.title}</div>
+          <div class="album-artist">${track.artist}</div>
         </div>
       </div>
     `;
 
-    const loadData = async () => {
-      tracks = await api.getTracks();
-      favorites = (await api.getFavorites()).map(t => t.id);
-      recentlyPlayed = await api.getRecentlyPlayed();
-      playlists = await api.getPlaylists();
-      render();
-    };
+    const renderTrackItem = (track) => `
+      <div class="track-item">
+        <div class="track-thumbnail" style="background: linear-gradient(135deg, #1DB954 0%, #1a1a2e 100%);"></div>
+        <div class="track-info">
+          <div class="track-title">${track.title}</div>
+          <div class="track-artist">${track.artist} • ${track.genre}</div>
+        </div>
+        <div class="track-controls">
+          <button class="icon-btn" onclick="toggleFavorite(${track.id}, event)" style="font-size: 1rem;">${favorites.includes(track.id) ? '❤️' : '🤍'}</button>
+          <button class="icon-btn" onclick="addToQueue(${track.id}, event)" style="font-size: 1rem;">➕</button>
+        </div>
+      </div>
+    `;
 
     const render = () => {
-      document.getElementById('tracksList').innerHTML = tracks.length === 0 ? '<div class="empty">No tracks</div>' : tracks.map(renderTrack).join('');
-      document.getElementById('exploreList').innerHTML = tracks.length === 0 ? '<div class="empty">No tracks</div>' : [...tracks].sort((a, b) => b.plays - a.plays).slice(0, 5).map(renderTrack).join('');
-      document.getElementById('favoritesList').innerHTML = tracks.filter(t => favorites.includes(t.id)).length === 0 ? '<div class="empty">No favorites</div>' : tracks.filter(t => favorites.includes(t.id)).map(renderTrack).join('');
-      document.getElementById('recentList').innerHTML = recentlyPlayed.length === 0 ? '<div class="empty">Nothing played</div>' : recentlyPlayed.map(renderTrack).join('');
-      document.getElementById('popularList').innerHTML = [...tracks].sort((a, b) => b.plays - a.plays).slice(0, 10).map(renderTrack).join('');
-      document.getElementById('queueList').innerHTML = queue.length === 0 ? '<div class="empty">Queue is empty</div>' : queue.map(id => tracks.find(t => t.id === id)).filter(Boolean).map(renderTrack).join('');
-      document.getElementById('playlistsList').innerHTML = playlists.length === 0 ? '<div class="empty">Create your first playlist</div>' : playlists.map(p => `<div class="card"><strong>${p.name}</strong> (${p.tracks.length} tracks) <button class="btn btn-small" onclick="deletePlaylistUI(${p.id})">Delete</button></div>`).join('');
-
-      document.getElementById('totalTracks').textContent = tracks.length;
-      document.getElementById('totalPlays').textContent = tracks.reduce((sum, t) => sum + t.plays, 0);
-      document.getElementById('favoriteCount').textContent = favorites.length;
-      document.getElementById('playlistCount').textContent = playlists.length;
-      document.getElementById('lifetimePlays').textContent = tracks.reduce((sum, t) => sum + t.plays, 0);
-      document.getElementById('topTrackPlays').textContent = tracks.length > 0 ? Math.max(...tracks.map(t => t.plays)) : 0;
-      document.getElementById('artistCount').textContent = new Set(tracks.map(t => t.artist)).size;
-      document.getElementById('genreCount').textContent = new Set(tracks.map(t => t.genre)).size;
+      document.getElementById('homeGrid').innerHTML = tracks.slice(0, 6).map(renderAlbumCard).join('');
+      document.getElementById('newUploads').innerHTML = tracks.slice(-6).map(renderAlbumCard).join('');
+      document.getElementById('browseGrid').innerHTML = tracks.map(renderAlbumCard).join('');
+      document.getElementById('libraryList').innerHTML = tracks.length === 0 ? '<div class="empty">No tracks yet</div>' : tracks.map(renderTrackItem).join('');
+      document.getElementById('favoritesList').innerHTML = tracks.filter(t => favorites.includes(t.id)).length === 0 ? '<div class="empty">No liked songs</div>' : tracks.filter(t => favorites.includes(t.id)).map(renderTrackItem).join('');
+      document.getElementById('queueList').innerHTML = queue.length === 0 ? '<div class="empty">Queue is empty</div>' : queue.map(id => tracks.find(t => t.id === id)).filter(Boolean).map(renderTrackItem).join('');
     };
 
-    window.switchTab = (tab) => {
+    window.switchTab = (tab, e) => {
       document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-      document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
       document.getElementById(tab).classList.add('active');
-      event.target.classList.add('active');
+      e.target.closest('.nav-tab').classList.add('active');
     };
 
     window.playTrack = async (id) => {
@@ -825,15 +948,46 @@
         currentTrack = track;
         document.getElementById('playerTitle').textContent = track.title;
         document.getElementById('playerArtist').textContent = track.artist;
-        document.getElementById('audio').src = track.url;
+        document.getElementById('playerThumb').src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%231DB954' width='100' height='100'/%3E%3Ctext x='50' y='50' text-anchor='middle' dominant-baseline='middle' font-size='40' fill='white'%3E♫%3C/text%3E%3C/svg%3E`;
+        document.getElementById('audio').src = `/stream/${track.filename || track.id}`;
+        document.getElementById('playerBar').style.display = 'flex';
         document.getElementById('audio').play();
+        isPlaying = true;
+        document.getElementById('playBtn').textContent = '⏸';
         await api.recordPlay(id);
-        recentlyPlayed = await api.getRecentlyPlayed();
+      }
+    };
+
+    window.togglePlay = () => {
+      if (isPlaying) {
+        document.getElementById('audio').pause();
+        document.getElementById('playBtn').textContent = '▶';
+      } else {
+        document.getElementById('audio').play();
+        document.getElementById('playBtn').textContent = '⏸';
+      }
+      isPlaying = !isPlaying;
+    };
+
+    window.skipNext = () => {
+      if (queue.length > 0) {
+        playTrack(queue.shift());
         render();
       }
     };
 
-    window.toggleFavorite = async (id) => {
+    window.skipPrev = () => {
+      if (currentTrack) playTrack(currentTrack.id);
+    };
+
+    window.addToQueue = (id, e) => {
+      e.stopPropagation();
+      if (!queue.includes(id)) queue.push(id);
+      notifications.push(`Added to queue`);
+    };
+
+    window.toggleFavorite = async (id, e) => {
+      e.stopPropagation();
       if (favorites.includes(id)) {
         favorites = favorites.filter(f => f !== id);
         await api.removeFavorite(id);
@@ -844,63 +998,10 @@
       render();
     };
 
-    window.searchTracks = async () => {
-      const query = document.getElementById('searchInput').value;
-      if (query) {
-        const results = await api.search(query);
-        document.getElementById('tracksList').innerHTML = results.map(renderTrack).join('');
-      } else {
-        render();
-      }
-    };
-
-    window.addToQueueUI = (id) => {
-      if (!queue.includes(id)) queue.push(id);
-      render();
-    };
-
-    window.createPlaylist = async () => {
-      const name = document.getElementById('playlistName').value;
-      if (name) {
-        await api.createPlaylist(name);
-        document.getElementById('playlistName').value = '';
-        playlists = await api.getPlaylists();
-        render();
-      }
-    };
-
-    window.deletePlaylistUI = async (id) => {
-      await api.deletePlaylist(id);
-      playlists = await api.getPlaylists();
-      render();
-    };
-
-    window.delTrack = async (id) => {
-      await api.deleteTrack(id);
-      loadData();
-    };
-
-    window.clearQueue = () => {
-      queue = [];
-      render();
-    };
-
-    window.skipNext = () => {
-      if (queue.length > 0) queue.shift();
-    };
-
-    window.skipPrevious = () => {
-      if (currentTrack) playTrack(currentTrack.id);
-    };
-
-    window.toggleShuffle = () => {
-      shuffle = !shuffle;
-      event.target.style.opacity = shuffle ? '1' : '0.6';
-    };
-
-    window.toggleRepeat = () => {
-      repeat = (repeat + 1) % 3;
-      event.target.textContent = ['🔁', '🔂', '🔃'][repeat] + ' Repeat';
+    window.filterGenre = (genre, e) => {
+      document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+      e.target.classList.add('active');
+      // filter logic here
     };
 
     window.openModal = (type) => {
@@ -911,27 +1012,35 @@
       document.getElementById(type + 'Modal').classList.remove('active');
     };
 
-    window.changeTheme = () => {
-      const theme = document.getElementById('themeSelect').value;
-      document.body.style.filter = theme === 'light' ? 'invert(1)' : 'none';
+    window.uploadTrack = async () => {
+      const file = document.getElementById('uploadFile').files[0];
+      if (!file) return alert('Select a file');
+      const result = await api.upload(
+        file,
+        document.getElementById('uploadTitle').value,
+        document.getElementById('uploadArtist').value,
+        document.getElementById('uploadGenre').value
+      );
+      closeModal('upload');
+      loadData();
     };
 
-    document.getElementById('uploadBtn').onclick = async () => {
-      const file = document.getElementById('file').files[0];
-      if (!file) return alert('Pick a file');
-      const btn = document.getElementById('uploadBtn');
-      btn.disabled = true;
-      await api.upload(file, document.getElementById('artist').value, document.getElementById('title').value, document.getElementById('genre').value);
-      document.getElementById('artist').value = '';
-      document.getElementById('title').value = '';
-      document.getElementById('file').value = '';
-      btn.disabled = false;
-      await loadData();
-      alert('✓ Track uploaded!');
+    window.createPlaylist = async () => {
+      const name = document.getElementById('newPlaylistName').value;
+      if (name) {
+        await api.createPlaylist(name);
+        closeModal('newPlaylist');
+        loadData();
+      }
     };
 
-    document.getElementById('volumeControl').oninput = (e) => {
-      document.getElementById('audio').volume = e.target.value / 100;
+    window.clearQueue = () => {
+      queue = [];
+      render();
+    };
+
+    window.toggleSetting = (el) => {
+      el.classList.toggle('active');
     };
 
     loadData();
