@@ -13,26 +13,68 @@
     }
 
     :root {
-      --primary: #1DB954;
-      --secondary: #1ed760;
-      --accent: #ff006e;
-      --accent2: #00d4ff;
-      --dark: #0f0f0f;
-      --darker: #1a1a1a;
-      --card: rgba(255, 255, 255, 0.08);
-      --border: rgba(255, 255, 255, 0.1);
-      --text: #fff;
-      --text-secondary: #b3b3b3;
-    }
+ :root {
+  --primary: #1DB954;
+  --secondary: #1ed760;
+  --accent: #ff006e;
+  --accent2: #00d4ff;
+  --dark: #0f0f0f;
+  --darker: #1a1a1a;
+  --card: rgba(255, 255, 255, 0.08);
+  --border: rgba(255, 255, 255, 0.1);
+  --text: #fff;
+  --text-secondary: #b3b3b3;
+}
 
-    html, body {
-      width: 100%;
-      height: 100%;
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, var(--dark) 0%, var(--darker) 100%);
-      color: var(--text);
-      overflow-x: hidden;
-    }
+body.light-mode {
+  --dark: #f5f5f5;
+  --darker: #ffffff;
+  --card: rgba(0, 0, 0, 0.08);
+  --border: rgba(0, 0, 0, 0.1);
+  --text: #1a1a1a;
+  --text-secondary: #666;
+}
+
+body.light-mode .topbar {
+  background: linear-gradient(180deg, rgba(245, 245, 245, 0.9) 0%, rgba(245, 245, 245, 0.5) 100%);
+}
+
+body.light-mode .categories {
+  background: linear-gradient(180deg, rgba(245, 245, 245, 0.6) 0%, rgba(245, 245, 245, 0.2) 100%);
+}
+
+body.light-mode .bottom-nav {
+  background: linear-gradient(180deg, rgba(245, 245, 245, 0.9) 0%, rgba(245, 245, 245, 1) 100%);
+}
+
+body.light-mode .modal-content {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 245, 245, 0.95) 100%);
+}
+
+body.light-mode .pill:hover, body.light-mode .pill.active {
+  color: #fff;
+}
+
+body.light-mode input[type="text"],
+body.light-mode input[type="email"],
+body.light-mode input[type="password"],
+body.light-mode input[type="file"],
+body.light-mode textarea,
+body.light-mode select {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, var(--dark) 0%, var(--darker) 100%);
+  color: var(--text);
+  overflow-x: hidden;
+  transition: all 0.3s ease;
+}
+
 
     .container {
       display: flex;
