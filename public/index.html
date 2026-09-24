@@ -3,11 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Music Hub</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <title>SoundWave - Music Platform</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap');
-
     * {
       margin: 0;
       padding: 0;
@@ -15,115 +13,160 @@
     }
 
     body {
-      font-family: 'Poppins', -apple-system, sans-serif;
-      background: linear-gradient(-45deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #1a1a2e 100%);
-      background-size: 400% 400%;
-      animation: gradientShift 15s ease infinite;
-      color: #e0e0e0;
+      font-family: 'Outfit', sans-serif;
+      background: #0f0f0f;
+      color: #fff;
       min-height: 100vh;
-      padding: 20px;
-      position: relative;
-      overflow-x: hidden;
     }
 
-    body::before {
-      content: '';
+    .wrapper {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      padding: 2rem 1.5rem;
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle at 20% 50%, rgba(147, 51, 234, 0.1) 0%, transparent 50%),
-                  radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
-      pointer-events: none;
-      z-index: 0;
+      height: 100vh;
+      overflow-y: auto;
     }
 
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
-
-    header {
-      background: linear-gradient(135deg, #9333ea 0%, #7c3aed 50%, #6d28d9 100%);
-      padding: 3rem 2rem;
-      border-radius: 20px;
-      text-align: center;
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
       margin-bottom: 2rem;
-      color: white;
-      box-shadow: 0 20px 60px rgba(147, 51, 234, 0.4);
-      border: 2px solid rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(10px);
+      background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.5px;
     }
 
-    header h1 {
+    .nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .nav-item {
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      color: #b3b3b3;
+      border: none;
+      background: transparent;
+      text-align: left;
+      width: 100%;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem;
+    }
+
+    .nav-item:hover {
+      color: #fff;
+      background: rgba(0, 212, 255, 0.1);
+    }
+
+    .nav-item.active {
+      background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
+      color: #000;
+      font-weight: 600;
+    }
+
+    .main {
+      margin-left: 250px;
+      flex: 1;
+      background: linear-gradient(to bottom, #0f0f0f 0%, #1a1a2e 100%);
+      min-height: 100vh;
+      overflow-y: auto;
+    }
+
+    .header {
+      padding: 2rem;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header h1 {
       font-size: 2.5rem;
+      font-weight: 800;
       margin-bottom: 0.5rem;
-      font-weight: 700;
       letter-spacing: -1px;
     }
 
-    .tabs {
-      display: flex;
-      gap: 1rem;
+    .header p {
+      color: #b3b3b3;
+      font-size: 0.95rem;
+      font-weight: 400;
+    }
+
+    .content {
+      padding: 2rem;
+      max-width: 1400px;
+    }
+
+    .search-container {
       margin-bottom: 2rem;
-      flex-wrap: wrap;
     }
 
-    .tab-btn {
-      padding: 0.75rem 1.5rem;
-      background: rgba(147, 51, 234, 0.2);
-      color: #c084fc;
-      border: 2px solid rgba(147, 51, 234, 0.3);
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: 600;
+    .search-bar {
+      width: 100%;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 24px;
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem;
       transition: all 0.3s ease;
-      font-family: 'Poppins', sans-serif;
     }
 
-    .tab-btn.active {
-      background: linear-gradient(135deg, #9333ea 0%, #a855f7 100%);
-      color: white;
-      border-color: #a78bfa;
-      box-shadow: 0 8px 20px rgba(147, 51, 234, 0.3);
+    .search-bar::placeholder {
+      color: #666;
     }
 
-    .tab-btn:hover {
-      border-color: #a78bfa;
-      transform: translateY(-2px);
+    .search-bar:focus {
+      outline: none;
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(0, 212, 255, 0.5);
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
     }
 
     .section {
-      background: rgba(42, 42, 62, 0.7);
-      padding: 2.5rem;
-      border-radius: 16px;
-      margin-bottom: 2rem;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
       display: none;
+      animation: fadeIn 0.3s ease;
     }
 
     .section.active {
       display: block;
     }
 
-    .section h2 {
-      color: #c084fc;
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
       margin-bottom: 1.5rem;
-      font-size: 1.5rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: -0.5px;
+    }
+
+    .upload-form {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      max-width: 500px;
     }
 
     .form-group {
@@ -136,42 +179,45 @@
     input[type="text"],
     input[type="file"],
     input[type="search"] {
-      padding: 1rem;
-      border: 2px solid rgba(147, 51, 234, 0.3);
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.05);
-      color: #e0e0e0;
-      font-size: 1rem;
-      font-family: 'Inter', sans-serif;
+      padding: 0.875rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem;
       transition: all 0.3s ease;
+    }
+
+    input[type="text"]::placeholder,
+    input[type="search"]::placeholder {
+      color: #666;
     }
 
     input[type="text"]:focus,
     input[type="file"]:focus,
     input[type="search"]:focus {
       outline: none;
-      border-color: #a78bfa;
-      background: rgba(255, 255, 255, 0.1);
-      box-shadow: 0 0 20px rgba(167, 139, 250, 0.3);
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(0, 212, 255, 0.5);
     }
 
     button {
-      padding: 1rem 2rem;
-      background: linear-gradient(135deg, #9333ea 0%, #a855f7 50%, #c084fc 100%);
-      color: white;
+      padding: 0.875rem 1.75rem;
+      background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
+      color: #000;
       border: none;
-      border-radius: 10px;
-      cursor: pointer;
+      border-radius: 24px;
       font-weight: 600;
-      font-size: 1rem;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Outfit', sans-serif;
+      cursor: pointer;
       transition: all 0.3s ease;
-      box-shadow: 0 8px 20px rgba(147, 51, 234, 0.3);
+      font-size: 0.95rem;
     }
 
     button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(147, 51, 234, 0.5);
+      transform: scale(1.05);
+      box-shadow: 0 8px 24px rgba(0, 212, 255, 0.3);
     }
 
     button:disabled {
@@ -180,243 +226,275 @@
       transform: none;
     }
 
+    .tracks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
     .track-card {
-      background: linear-gradient(135deg, rgba(147, 51, 234, 0.15) 0%, rgba(59, 130, 246, 0.1) 100%);
-      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 12px;
-      border: 2px solid rgba(147, 51, 234, 0.3);
-      margin-bottom: 1rem;
+      padding: 1.5rem;
       transition: all 0.3s ease;
-      backdrop-filter: blur(5px);
+      cursor: pointer;
     }
 
     .track-card:hover {
-      background: linear-gradient(135deg, rgba(147, 51, 234, 0.25) 0%, rgba(59, 130, 246, 0.2) 100%);
-      border-color: #a78bfa;
-      transform: translateX(5px);
-      box-shadow: 0 8px 25px rgba(147, 51, 234, 0.3);
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(0, 212, 255, 0.5);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0, 212, 255, 0.15);
+    }
+
+    .track-card.list-view {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      grid-column: 1 / -1;
     }
 
     .track-info {
-      margin-bottom: 1rem;
+      flex: 1;
     }
 
-    .track-info h3 {
-      color: white;
-      font-weight: 600;
+    .track-title {
       font-size: 1.1rem;
-      margin-bottom: 0.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #fff;
     }
 
-    .track-info p {
+    .track-artist {
       font-size: 0.9rem;
-      opacity: 0.7;
-      font-family: 'Inter', sans-serif;
+      color: #b3b3b3;
+      margin-bottom: 0.5rem;
     }
 
     .track-meta {
       font-size: 0.8rem;
-      opacity: 0.5;
-      margin-top: 0.5rem;
+      color: #666;
     }
 
     .track-actions {
       display: flex;
-      gap: 0.75rem;
+      gap: 0.5rem;
+      margin-top: 1rem;
       flex-wrap: wrap;
     }
 
     .btn-small {
       padding: 0.5rem 1rem;
-      font-size: 0.85rem;
-      border-radius: 8px;
+      font-size: 0.8rem;
+      border-radius: 20px;
       font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: rgba(0, 212, 255, 0.2);
+      color: #00d4ff;
+      font-family: 'Outfit', sans-serif;
     }
 
-    .btn-play {
-      background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
-      color: white;
+    .btn-small:hover {
+      background: rgba(0, 212, 255, 0.3);
     }
 
     .btn-favorite {
-      background: rgba(236, 72, 153, 0.2);
-      color: #f472b6;
-      border: 1px solid rgba(236, 72, 153, 0.5);
+      background: rgba(255, 107, 107, 0.2);
+      color: #ff6b6b;
     }
 
     .btn-favorite.liked {
-      background: rgba(236, 72, 153, 0.4);
+      background: rgba(255, 107, 107, 0.4);
     }
 
     .btn-delete {
-      background: rgba(239, 68, 68, 0.2);
-      color: #fca5a5;
-      border: 1px solid rgba(239, 68, 68, 0.5);
+      background: rgba(255, 107, 107, 0.2);
+      color: #ff6b6b;
     }
 
     .player {
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(147, 51, 234, 0.2) 100%);
-      padding: 2rem;
-      border-radius: 16px;
+      background: rgba(0, 212, 255, 0.1);
+      border: 1px solid rgba(0, 212, 255, 0.3);
+      padding: 1.5rem;
+      border-radius: 12px;
       margin-bottom: 2rem;
-      border: 2px solid rgba(147, 51, 234, 0.4);
-      box-shadow: 0 12px 40px rgba(147, 51, 234, 0.2);
       backdrop-filter: blur(10px);
     }
 
     .player h3 {
-      color: #c084fc;
+      font-size: 1.4rem;
       margin-bottom: 0.5rem;
-      font-size: 1.3rem;
-    }
-
-    .player-controls {
-      display: flex;
-      gap: 0.5rem;
-      margin: 1rem 0;
-      flex-wrap: wrap;
-      align-items: center;
+      color: #00d4ff;
     }
 
     audio {
       width: 100%;
       margin: 1rem 0;
-      accent-color: #9333ea;
+      accent-color: #00d4ff;
     }
 
-    .empty {
-      text-align: center;
-      opacity: 0.6;
-      padding: 2rem;
-      font-style: italic;
-    }
-
-    .playlist-item {
-      background: rgba(255, 255, 255, 0.03);
-      padding: 1rem;
-      border-radius: 8px;
-      margin-bottom: 0.75rem;
-      border: 1px solid rgba(147, 51, 234, 0.2);
+    .player-controls {
       display: flex;
-      justify-content: space-between;
+      gap: 0.75rem;
+      margin: 1rem 0;
+      flex-wrap: wrap;
       align-items: center;
     }
 
-    .search-bar {
-      width: 100%;
-      margin-bottom: 1.5rem;
+    .empty-state {
+      text-align: center;
+      padding: 3rem;
+      color: #666;
     }
 
-    @media (max-width: 600px) {
-      header h1 {
+    .empty-state p {
+      font-size: 1rem;
+    }
+
+    .playlist-item {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 0.75rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .playlist-item:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(0, 212, 255, 0.3);
+    }
+
+    .playlist-name {
+      font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 0;
+        padding: 0;
+        position: absolute;
+        height: auto;
+        transform: translateX(-100%);
+      }
+
+      .main {
+        margin-left: 0;
+      }
+
+      .header h1 {
         font-size: 1.8rem;
       }
 
-      .tabs {
-        justify-content: flex-start;
-        overflow-x: auto;
-        gap: 0.5rem;
-      }
-
-      .track-card {
-        flex-direction: column;
-      }
-
-      .track-actions {
-        width: 100%;
-      }
-
-      .btn-small {
-        flex: 1;
+      .tracks-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>🎵 Music Hub Pro</h1>
-      <p>Your personal music platform</p>
-    </header>
-
-    <div class="tabs">
-      <button class="tab-btn active" onclick="switchTab('upload')">Upload</button>
-      <button class="tab-btn" onclick="switchTab('library')">Library</button>
-      <button class="tab-btn" onclick="switchTab('favorites')">❤ Favorites</button>
-      <button class="tab-btn" onclick="switchTab('recent')">Recent</button>
-      <button class="tab-btn" onclick="switchTab('popular')">Popular</button>
-      <button class="tab-btn" onclick="switchTab('playlists')">Playlists</button>
-      <button class="tab-btn" onclick="switchTab('queue')">Queue</button>
-    </div>
-
-    <!-- Upload Section -->
-    <div id="upload" class="section active">
-      <h2>Upload Track</h2>
-      <div class="form-group">
-        <input type="text" id="artist" placeholder="Artist name">
-        <input type="text" id="title" placeholder="Track title">
-        <input type="text" id="genre" placeholder="Genre (e.g. Pop, Rock, Hip-Hop)">
-        <input type="file" id="file" accept="audio/*,video/*">
-        <button id="uploadBtn">Upload</button>
+  <div class="wrapper">
+    <div class="sidebar">
+      <div class="logo">♫ SoundWave</div>
+      <div class="nav">
+        <button class="nav-item active" onclick="switchTab('home')">🏠 Home</button>
+        <button class="nav-item" onclick="switchTab('library')">📚 Library</button>
+        <button class="nav-item" onclick="switchTab('favorites')">❤️ Liked</button>
+        <button class="nav-item" onclick="switchTab('recent')">🕐 Recent</button>
+        <button class="nav-item" onclick="switchTab('popular')">🔥 Trending</button>
+        <button class="nav-item" onclick="switchTab('playlists')">🎵 Playlists</button>
+        <button class="nav-item" onclick="switchTab('queue')">📋 Queue</button>
       </div>
     </div>
 
-    <!-- Player Section -->
-    <div id="player" class="player" style="display: none;">
-      <h3 id="playerTitle"></h3>
-      <p id="playerArtist"></p>
-      <audio id="audio" controls></audio>
-      <div class="player-controls">
-        <button class="btn-small" onclick="toggleShuffle()">🔀 Shuffle</button>
-        <button class="btn-small" onclick="toggleRepeat()">🔁 Repeat</button>
-        <button class="btn-small" onclick="skipPrevious()">⏮ Prev</button>
-        <button class="btn-small" onclick="skipNext()">Next ⏭</button>
-        <input type="range" id="volumeControl" min="0" max="100" value="100" style="width: 150px;">
+    <div class="main">
+      <div class="header">
+        <h1>♫ SoundWave</h1>
+        <p>Your personal music platform</p>
       </div>
-    </div>
 
-    <!-- Library Section -->
-    <div id="library" class="section">
-      <h2>Library</h2>
-      <div class="search-bar">
-        <input type="search" id="searchInput" placeholder="Search by title, artist, or genre..." onkeyup="searchTracks()">
+      <div class="content">
+        <!-- Home Section -->
+        <div id="home" class="section active">
+          <div class="section-title">Welcome to SoundWave</div>
+          <div class="upload-form">
+            <h2 style="margin-bottom: 1.5rem; font-size: 1.3rem;">Upload Your Track</h2>
+            <div class="form-group">
+              <input type="text" id="artist" placeholder="Artist name">
+              <input type="text" id="title" placeholder="Track title">
+              <input type="text" id="genre" placeholder="Genre (Pop, Rock, Hip-Hop, etc.)">
+              <input type="file" id="file" accept="audio/*,video/*">
+              <button id="uploadBtn" style="width: 100%;">Upload</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Player Section -->
+        <div id="player" class="player" style="display: none;">
+          <h3 id="playerTitle">Now Playing</h3>
+          <p id="playerArtist" style="color: #b3b3b3; margin-bottom: 1rem;"></p>
+          <audio id="audio" controls></audio>
+          <div class="player-controls">
+            <button class="btn-small" onclick="toggleShuffle()">🔀 Shuffle</button>
+            <button class="btn-small" onclick="toggleRepeat()">🔁 Repeat</button>
+            <button class="btn-small" onclick="skipPrevious()">⏮ Prev</button>
+            <button class="btn-small" onclick="skipNext()">Next ⏭</button>
+            <input type="range" id="volumeControl" min="0" max="100" value="100" style="width: 150px; margin-left: auto;">
+          </div>
+        </div>
+
+        <!-- Library Section -->
+        <div id="library" class="section">
+          <div class="section-title">Your Library</div>
+          <div class="search-container">
+            <input type="search" class="search-bar" id="searchInput" placeholder="Search tracks, artists, genres..." onkeyup="searchTracks()">
+          </div>
+          <div class="tracks-grid" id="tracksList"></div>
+        </div>
+
+        <!-- Favorites Section -->
+        <div id="favorites" class="section">
+          <div class="section-title">❤️ Liked Songs</div>
+          <div class="tracks-grid" id="favoritesList"></div>
+        </div>
+
+        <!-- Recent Section -->
+        <div id="recent" class="section">
+          <div class="section-title">🕐 Recently Played</div>
+          <div class="tracks-grid" id="recentList"></div>
+        </div>
+
+        <!-- Popular Section -->
+        <div id="popular" class="section">
+          <div class="section-title">🔥 Trending Now</div>
+          <div class="tracks-grid" id="popularList"></div>
+        </div>
+
+        <!-- Playlists Section -->
+        <div id="playlists" class="section">
+          <div class="section-title">🎵 Playlists</div>
+          <div class="upload-form" style="max-width: none; margin-bottom: 2rem;">
+            <div class="form-group">
+              <input type="text" id="playlistName" placeholder="Create new playlist">
+              <button onclick="createPlaylist()" style="width: 100%;">Create</button>
+            </div>
+          </div>
+          <div id="playlistsList"></div>
+        </div>
+
+        <!-- Queue Section -->
+        <div id="queue" class="section">
+          <div class="section-title">📋 Queue</div>
+          <button onclick="clearQueue()" style="margin-bottom: 1.5rem;">Clear Queue</button>
+          <div class="tracks-grid" id="queueList"></div>
+        </div>
       </div>
-      <div id="tracksList"></div>
-    </div>
-
-    <!-- Favorites Section -->
-    <div id="favorites" class="section">
-      <h2>❤ Favorite Tracks</h2>
-      <div id="favoritesList"></div>
-    </div>
-
-    <!-- Recently Played Section -->
-    <div id="recent" class="section">
-      <h2>Recently Played</h2>
-      <div id="recentList"></div>
-    </div>
-
-    <!-- Most Played Section -->
-    <div id="popular" class="section">
-      <h2>Most Played</h2>
-      <div id="popularList"></div>
-    </div>
-
-    <!-- Playlists Section -->
-    <div id="playlists" class="section">
-      <h2>Playlists</h2>
-      <div class="form-group">
-        <input type="text" id="playlistName" placeholder="New playlist name">
-        <button onclick="createPlaylist()">Create Playlist</button>
-      </div>
-      <div id="playlistsList"></div>
-    </div>
-
-    <!-- Queue Section -->
-    <div id="queue" class="section">
-      <h2>Queue</h2>
-      <button onclick="clearQueue()">Clear Queue</button>
-      <div id="queueList"></div>
     </div>
   </div>
 
@@ -477,9 +555,6 @@
         const res = await fetch('/api/playlists', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name }) });
         return res.json();
       },
-      addToPlaylist: async (playlistId, trackId) => {
-        await fetch(`/api/playlists/${playlistId}/add/${trackId}`, { method: 'POST' });
-      },
       deletePlaylist: async (id) => {
         await fetch(`/api/playlists/${id}`, { method: 'DELETE' });
       },
@@ -488,143 +563,59 @@
       }
     };
 
+    const renderTrackCard = (track, favorites) => `
+      <div class="track-card">
+        <div class="track-title">${track.title}</div>
+        <div class="track-artist">${track.artist}</div>
+        <div class="track-meta">${track.genre} • ${track.plays} plays</div>
+        <div class="track-actions">
+          <button class="btn-small" onclick="playTrack(${track.id})">▶ Play</button>
+          <button class="btn-small btn-favorite ${favorites.includes(track.id) ? 'liked' : ''}" onclick="toggleFavorite(${track.id})">❤</button>
+          <button class="btn-small" onclick="addToQueueUI(${track.id})">+ Queue</button>
+          <button class="btn-small btn-delete" onclick="delTrack(${track.id})">Delete</button>
+        </div>
+      </div>
+    `;
+
     const loadAllData = async () => {
       tracks = await api.getTracks();
       favorites = (await api.getFavorites()).map(t => t.id);
       recentlyPlayed = await api.getRecentlyPlayed();
       playlists = await api.getPlaylists();
-      renderLibrary();
-      renderFavorites();
-      renderRecent();
-      renderPopular();
-      renderPlaylists();
+      render();
     };
 
-    const renderLibrary = () => {
-      const list = document.getElementById('tracksList');
-      if (tracks.length === 0) {
-        list.innerHTML = '<p class="empty">No tracks yet</p>';
-        return;
-      }
-      list.innerHTML = tracks.map(track => `
-        <div class="track-card">
-          <div class="track-info">
-            <h3>${track.title}</h3>
-            <p>${track.artist}</p>
-            <div class="track-meta">${track.genre} • ${track.plays} plays</div>
-          </div>
-          <div class="track-actions">
-            <button class="btn-small btn-play" onclick="playTrack(${track.id})">▶ Play</button>
-            <button class="btn-small btn-favorite ${favorites.includes(track.id) ? 'liked' : ''}" onclick="toggleFavorite(${track.id})">❤</button>
-            <button class="btn-small" onclick="addToQueueUI(${track.id})">Queue</button>
-            <button class="btn-small btn-delete" onclick="delTrack(${track.id})">Delete</button>
-          </div>
-        </div>
-      `).join('');
-    };
+    const render = () => {
+      const trackList = document.getElementById('tracksList');
+      trackList.innerHTML = tracks.length === 0 ? '<div class="empty-state"><p>No tracks yet. Upload one to get started!</p></div>' : tracks.map(t => renderTrackCard(t, favorites)).join('');
 
-    const renderFavorites = () => {
-      const list = document.getElementById('favoritesList');
+      const favList = document.getElementById('favoritesList');
       const favTracks = tracks.filter(t => favorites.includes(t.id));
-      if (favTracks.length === 0) {
-        list.innerHTML = '<p class="empty">No favorites yet</p>';
-        return;
-      }
-      list.innerHTML = favTracks.map(track => `
-        <div class="track-card">
-          <div class="track-info">
-            <h3>${track.title}</h3>
-            <p>${track.artist}</p>
-          </div>
-          <div class="track-actions">
-            <button class="btn-small btn-play" onclick="playTrack(${track.id})">▶ Play</button>
-            <button class="btn-small btn-delete" onclick="delTrack(${track.id})">Delete</button>
-          </div>
-        </div>
-      `).join('');
-    };
+      favList.innerHTML = favTracks.length === 0 ? '<div class="empty-state"><p>No liked songs yet</p></div>' : favTracks.map(t => renderTrackCard(t, favorites)).join('');
 
-    const renderRecent = () => {
-      const list = document.getElementById('recentList');
-      if (recentlyPlayed.length === 0) {
-        list.innerHTML = '<p class="empty">No recently played</p>';
-        return;
-      }
-      list.innerHTML = recentlyPlayed.map(track => `
-        <div class="track-card">
-          <div class="track-info">
-            <h3>${track.title}</h3>
-            <p>${track.artist}</p>
-          </div>
-          <div class="track-actions">
-            <button class="btn-small btn-play" onclick="playTrack(${track.id})">▶ Play</button>
-          </div>
-        </div>
-      `).join('');
-    };
+      const recList = document.getElementById('recentList');
+      recList.innerHTML = recentlyPlayed.length === 0 ? '<div class="empty-state"><p>Nothing played yet</p></div>' : recentlyPlayed.map(t => renderTrackCard(t, favorites)).join('');
 
-    const renderPopular = () => {
-      const list = document.getElementById('popularList');
+      const popList = document.getElementById('popularList');
       const sorted = [...tracks].sort((a, b) => b.plays - a.plays).slice(0, 10);
-      if (sorted.length === 0) {
-        list.innerHTML = '<p class="empty">No popular tracks</p>';
-        return;
-      }
-      list.innerHTML = sorted.map(track => `
-        <div class="track-card">
-          <div class="track-info">
-            <h3>${track.title}</h3>
-            <p>${track.artist}</p>
-            <div class="track-meta">${track.plays} plays</div>
-          </div>
-          <div class="track-actions">
-            <button class="btn-small btn-play" onclick="playTrack(${track.id})">▶ Play</button>
-          </div>
-        </div>
-      `).join('');
-    };
+      popList.innerHTML = sorted.length === 0 ? '<div class="empty-state"><p>No trending tracks</p></div>' : sorted.map(t => renderTrackCard(t, favorites)).join('');
 
-    const renderPlaylists = () => {
-      const list = document.getElementById('playlistsList');
-      if (playlists.length === 0) {
-        list.innerHTML = '<p class="empty">No playlists yet</p>';
-        return;
-      }
-      list.innerHTML = playlists.map(p => `
+      const plList = document.getElementById('playlistsList');
+      plList.innerHTML = playlists.length === 0 ? '<div class="empty-state"><p>Create a playlist to get started</p></div>' : playlists.map(p => `
         <div class="playlist-item">
-          <div>
-            <h4>${p.name}</h4>
-            <p style="font-size: 0.8rem; opacity: 0.6;">${p.tracks.length} tracks</p>
-          </div>
-          <div class="track-actions">
-            <button class="btn-small" onclick="viewPlaylist(${p.id})">View</button>
-            <button class="btn-small btn-delete" onclick="deletePlaylistUI(${p.id})">Delete</button>
-          </div>
+          <div><div class="playlist-name">${p.name}</div><div style="font-size: 0.8rem; color: #666;">${p.tracks.length} tracks</div></div>
+          <div style="display: flex; gap: 0.5rem;"><button class="btn-small" onclick="viewPlaylist(${p.id})">View</button><button class="btn-small btn-delete" onclick="deletePlaylistUI(${p.id})">Delete</button></div>
         </div>
       `).join('');
-    };
 
-    const renderQueue = () => {
-      const list = document.getElementById('queueList');
-      if (queue.length === 0) {
-        list.innerHTML = '<p class="empty">Queue is empty</p>';
-        return;
-      }
+      const qList = document.getElementById('queueList');
       const queueTracks = queue.map(id => tracks.find(t => t.id === id)).filter(Boolean);
-      list.innerHTML = queueTracks.map(track => `
-        <div class="track-card">
-          <div class="track-info">
-            <h3>${track.title}</h3>
-            <p>${track.artist}</p>
-          </div>
-          <button class="btn-small btn-play" onclick="playTrack(${track.id})">▶ Play</button>
-        </div>
-      `).join('');
+      qList.innerHTML = queueTracks.length === 0 ? '<div class="empty-state"><p>Queue is empty</p></div>' : queueTracks.map(t => renderTrackCard(t, favorites)).join('');
     };
 
     window.switchTab = (tab) => {
       document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
       document.getElementById(tab).classList.add('active');
       event.target.classList.add('active');
     };
@@ -640,6 +631,7 @@
         document.getElementById('audio').play();
         await api.recordPlay(id);
         recentlyPlayed = await api.getRecentlyPlayed();
+        render();
       }
     };
 
@@ -651,38 +643,22 @@
         favorites.push(id);
         await api.addFavorite(id);
       }
-      renderLibrary();
-      renderFavorites();
+      render();
     };
 
     window.searchTracks = async () => {
       const query = document.getElementById('searchInput').value;
       if (query.length === 0) {
-        renderLibrary();
+        render();
       } else {
         const results = await api.search(query);
-        const list = document.getElementById('tracksList');
-        list.innerHTML = results.map(track => `
-          <div class="track-card">
-            <div class="track-info">
-              <h3>${track.title}</h3>
-              <p>${track.artist}</p>
-              <div class="track-meta">${track.genre}</div>
-            </div>
-            <div class="track-actions">
-              <button class="btn-small btn-play" onclick="playTrack(${track.id})">▶ Play</button>
-              <button class="btn-small btn-favorite ${favorites.includes(track.id) ? 'liked' : ''}" onclick="toggleFavorite(${track.id})">❤</button>
-              <button class="btn-small btn-delete" onclick="delTrack(${track.id})">Delete</button>
-            </div>
-          </div>
-        `).join('');
+        document.getElementById('tracksList').innerHTML = results.map(t => renderTrackCard(t, favorites)).join('');
       }
     };
 
     window.addToQueueUI = (id) => {
       if (!queue.includes(id)) {
         queue.push(id);
-        renderQueue();
         alert('Added to queue');
       }
     };
@@ -693,14 +669,14 @@
         await api.createPlaylist(name);
         document.getElementById('playlistName').value = '';
         playlists = await api.getPlaylists();
-        renderPlaylists();
+        render();
       }
     };
 
     window.deletePlaylistUI = async (id) => {
       await api.deletePlaylist(id);
       playlists = await api.getPlaylists();
-      renderPlaylists();
+      render();
     };
 
     window.delTrack = async (id) => {
@@ -710,20 +686,16 @@
 
     window.clearQueue = () => {
       queue = [];
-      renderQueue();
+      render();
     };
 
     window.skipNext = () => {
-      if (queue.length > 0) {
-        queue.shift();
-        renderQueue();
-      }
+      if (queue.length > 0) queue.shift();
+      render();
     };
 
     window.skipPrevious = () => {
-      if (currentTrack) {
-        playTrack(currentTrack.id);
-      }
+      if (currentTrack) playTrack(currentTrack.id);
     };
 
     window.toggleShuffle = () => {
@@ -740,24 +712,16 @@
     document.getElementById('uploadBtn').onclick = async () => {
       const file = document.getElementById('file').files[0];
       if (!file) return alert('Pick a file');
-
       const btn = document.getElementById('uploadBtn');
       btn.disabled = true;
       btn.textContent = 'Uploading...';
-
-      const artist = document.getElementById('artist').value;
-      const title = document.getElementById('title').value;
-      const genre = document.getElementById('genre').value;
-
-      await api.upload(file, artist, title, genre);
-      
+      await api.upload(file, document.getElementById('artist').value, document.getElementById('title').value, document.getElementById('genre').value);
       document.getElementById('artist').value = '';
       document.getElementById('title').value = '';
       document.getElementById('genre').value = '';
       document.getElementById('file').value = '';
       btn.disabled = false;
       btn.textContent = 'Upload';
-
       await loadAllData();
     };
 
