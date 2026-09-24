@@ -5,142 +5,316 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Music Hub</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: system-ui, -apple-system, sans-serif;
-      background: linear-gradient(135deg, #1e1e2e 0%, #2d2d44 100%);
-      color: #e0e0e0;
-      min-height: 100vh;
-      padding: 20px;
-    }
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    header {
-      background: linear-gradient(135deg, #6d28d9 0%, #9333ea 100%);
-      padding: 2rem;
-      border-radius: 12px;
-      text-align: center;
-      margin-bottom: 2rem;
-      color: white;
-    }
-    header h1 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
-    .section {
-      background: #2a2a3e;
-      padding: 2rem;
-      border-radius: 12px;
-      margin-bottom: 2rem;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .section h2 {
-      color: #a78bfa;
-      margin-bottom: 1.5rem;
-      font-size: 1.3rem;
-    }
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-    input[type="text"],
-    input[type="file"] {
-      padding: 0.75rem;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 6px;
-      background: rgba(255, 255, 255, 0.05);
-      color: #e0e0e0;
-      font-size: 1rem;
-    }
-    input[type="text"]::placeholder {
-      color: rgba(224, 224, 224, 0.5);
-    }
-    button {
-      padding: 0.75rem 1.5rem;
-      background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: all 0.3s;
-    }
-    button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(168, 85, 247, 0.4);
-    }
-    button:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-    .track-card {
-      background: rgba(255, 255, 255, 0.03);
-      padding: 1.25rem;
-      border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      margin-bottom: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-    }
-    .track-card:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: #a78bfa;
-    }
-    .track-info h3 {
-      margin-bottom: 0.25rem;
-      color: white;
-    }
-    .track-info p {
-      font-size: 0.9rem;
-      opacity: 0.7;
-    }
-    .track-actions {
-      display: flex;
-      gap: 0.5rem;
-    }
-    .btn-small {
-      padding: 0.5rem 1rem;
-      font-size: 0.9rem;
-    }
-    .btn-delete {
-      background: rgba(239, 68, 68, 0.2);
-      color: #fca5a5;
-      border: 1px solid rgba(239, 68, 68, 0.5);
-    }
-    .btn-delete:hover {
-      background: rgba(239, 68, 68, 0.3);
-    }
-    .empty {
-      text-align: center;
-      opacity: 0.6;
-      padding: 2rem;
-      font-style: italic;
-    }
-    .player {
-      background: linear-gradient(135deg, #3730a3 0%, #4c1d95 100%);
-      padding: 1.5rem;
-      border-radius: 8px;
-      margin-bottom: 1.5rem;
-    }
-    .player h3 {
-      color: white;
-      margin-bottom: 0.5rem;
-    }
-    audio {
-      width: 100%;
-      margin-top: 1rem;
-    }
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+    
+body {
+  font-family: 'Poppins', -apple-system, sans-serif;
+  background: linear-gradient(-45deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #1a1a2e 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  color: #e0e0e0;
+  min-height: 100vh;
+  padding: 20px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 20% 50%, rgba(147, 51, 234, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+header {
+  background: linear-gradient(135deg, #9333ea 0%, #7c3aed 50%, #6d28d9 100%);
+  padding: 3rem 2rem;
+  border-radius: 20px;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: white;
+  box-shadow: 0 20px 60px rgba(147, 51, 234, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+header p {
+  font-size: 1rem;
+  opacity: 0.95;
+  font-weight: 300;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.section {
+  background: rgba(42, 42, 62, 0.7);
+  padding: 2.5rem;
+  border-radius: 16px;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.section:hover {
+  border-color: rgba(147, 51, 234, 0.3);
+  box-shadow: 0 12px 40px rgba(147, 51, 234, 0.2);
+}
+
+.section h2 {
+  color: #c084fc;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: linear-gradient(135deg, #a78bfa 0%, #c084fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+input[type="text"],
+input[type="file"] {
+  padding: 1rem;
+  border: 2px solid rgba(147, 51, 234, 0.3);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #e0e0e0;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="file"]:focus {
+  outline: none;
+  border-color: #a78bfa;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 20px rgba(167, 139, 250, 0.3);
+}
+
+input[type="text"]::placeholder {
+  color: rgba(224, 224, 224, 0.4);
+  font-style: italic;
+}
+
+button {
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #9333ea 0%, #a855f7 50%, #c084fc 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(147, 51, 234, 0.3);
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: left 0.3s ease;
+}
+
+button:hover::before {
+  left: 100%;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(147, 51, 234, 0.5);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.track-card {
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.15) 0%, rgba(59, 130, 246, 0.1) 100%);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 2px solid rgba(147, 51, 234, 0.3);
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.track-card:hover {
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.25) 0%, rgba(59, 130, 246, 0.2) 100%);
+  border-color: #a78bfa;
+  transform: translateX(5px);
+  box-shadow: 0 8px 25px rgba(147, 51, 234, 0.3);
+}
+
+.track-info h3 {
+  margin-bottom: 0.5rem;
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.track-info p {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+}
+
+.track-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.btn-small {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.btn-delete {
+  background: rgba(239, 68, 68, 0.2);
+  color: #fca5a5;
+  border: 2px solid rgba(239, 68, 68, 0.5);
+}
+
+.btn-delete:hover {
+  background: rgba(239, 68, 68, 0.3);
+  border-color: #fca5a5;
+  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.3);
+}
+
+.empty {
+  text-align: center;
+  opacity: 0.6;
+  padding: 2rem;
+  font-style: italic;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+}
+
+.player {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(147, 51, 234, 0.2) 100%);
+  padding: 2rem;
+  border-radius: 16px;
+  margin-bottom: 2rem;
+  border: 2px solid rgba(147, 51, 234, 0.4);
+  box-shadow: 0 12px 40px rgba(147, 51, 234, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.player h3 {
+  color: #c084fc;
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.player p {
+  color: rgba(255, 255, 255, 0.8);
+  font-family: 'Inter', sans-serif;
+  margin-bottom: 1rem;
+}
+
+audio {
+  width: 100%;
+  margin-top: 1rem;
+  accent-color: #9333ea;
+}
+
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 1.8rem;
+  }
+
+  .track-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .track-actions {
+    width: 100%;
+  }
+
+  .btn-small {
+    flex: 1;
+  }
+}
   </style>
 </head>
 <body>
