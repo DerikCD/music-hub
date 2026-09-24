@@ -26,7 +26,7 @@ const storage = multer.diskStorage({
 const upload = multer({
   storage,
   fileFilter: (req, file, cb) => {
-    const allowed = /\.(mp3|wav|flac|m4a|ogg)$/i;
+    const allowed = /\.(mp3|wav|flac|m4a|ogg|mp4|avi|mov|mkv|webm|flv|wmv)$/i;
     if (allowed.test(file.originalname)) {
       cb(null, true);
     } else {
